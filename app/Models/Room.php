@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Crossword extends Model
+class Room extends Model
 {
     use HasFactory;
 
@@ -14,12 +14,17 @@ class Crossword extends Model
 
     protected $fillable = [
         'id',
-        'grid_size',
-        'theme',
+        'campus_id',
+        'room_name',
+        'type',
     ];
 
-    public function words()
+    protected $casts = [
+        'id' => 'string',
+    ];
+
+    public function campus()
     {
-        return $this->hasMany(CrosswordWord::class, 'crossword_id');
+        return $this->belongsTo(Campus::class);
     }
 }

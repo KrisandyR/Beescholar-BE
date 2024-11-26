@@ -35,7 +35,7 @@ return new class extends Migration
             $table->timestamp('created_at')->nullable()->default(now());
             $table->string('created_by')->nullable();
             $table->timestamp('last_updated_at')->nullable()->default(now());
-            $table->string('last_updated_by')->nullable();array_rand
+            $table->string('last_updated_by')->nullable();
         });
 
         Schema::create('campuses', function (Blueprint $table) {

@@ -155,6 +155,7 @@ return [
     |
     */
 
+    // NOTE : Ada kepake
     'providers' => ServiceProvider::defaultProviders()->merge([
         /*
          * Package Service Providers...

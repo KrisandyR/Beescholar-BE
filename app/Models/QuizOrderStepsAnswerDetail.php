@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class QuizStep extends Model
+class QuizOrderStepsAnswerDetail extends Model
 {
     use HasFactory, HasUuids;
 
@@ -15,25 +15,24 @@ class QuizStep extends Model
 
     protected $fillable = [
         'id',
-        'step_text',
-        'step_order',
-        'question_id',
+        'answer_step_id',
+        'answer_step_order',
+        'user_answer_id',
         'created_by',
         'updated_by',
     ];
 
     protected $casts = [
-        'step_order' => 'integer'
+        'answer_step_order' => 'integer'
     ];
 
-    public function quizStepsAnswerDetail()
+    public function answer()
     {
-        return $this->hasMany(QuizOrderStepsAnswerDetail::class, 'answer_step_id', 'id');
+        return $this->belongsTo(QuizOrderStepsAnswer::class, 'user_answer_id', 'id');
     }
 
-    public function question()
+    public function steps()
     {
-        return $this->belongsTo(QuizQuestion::class, 'question_id', 'id');
+        return $this->belongsTo(QuizStep::class, 'answer_step_id', 'id');
     }
-    
 }

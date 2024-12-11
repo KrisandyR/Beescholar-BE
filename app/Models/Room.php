@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $keyType = 'string';
     public $incrementing = false;
@@ -17,14 +18,17 @@ class Room extends Model
         'campus_id',
         'room_name',
         'type',
-    ];
-
-    protected $casts = [
-        'id' => 'string',
+        'created_by',
+        'updated_by',
     ];
 
     public function campus()
     {
-        return $this->belongsTo(Campus::class);
+        return $this->belongsTo(Campus::class, 'campus_id', 'id');
+    }
+
+    public function activities()
+    {
+        return $this->hasMany(Activity::class, 'room_id', 'id');
     }
 }

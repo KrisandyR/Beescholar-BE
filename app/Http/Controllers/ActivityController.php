@@ -13,6 +13,10 @@ class ActivityController extends Controller
     public function index()
     {
         //
+        return response()->json([[
+            "ok" => true,
+            "name" => "get"
+        ], "status" => 200]);
     }
 
     /**
@@ -21,6 +25,10 @@ class ActivityController extends Controller
     public function store(Request $request)
     {
         //
+        return response()->json([[
+            "ok" => true,
+            "name" => "post"
+        ], "status" => 200]);
     }
 
     /**
@@ -45,5 +53,12 @@ class ActivityController extends Controller
     public function destroy(Activity $activity)
     {
         //
+    }
+
+    public function test(Request $request){
+        return response()->json([[
+            "ok" => true,
+            "name" => "hehe"
+        ], "status" => 200]);
     }
 }

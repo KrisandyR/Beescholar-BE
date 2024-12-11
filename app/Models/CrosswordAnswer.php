@@ -6,33 +6,30 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class QuizOption extends Model
+class CrosswordAnswer extends Model
 {
     use HasFactory, HasUuids;
 
     protected $keyType = 'string';
     public $incrementing = false;
-
     protected $fillable = [
         'id',
-        'option_text',
+        'word_answer',
         'is_correct', // default false
-        'question_id',
-        'created_by',
-        'updated_by',
+        'word_id',
     ];
 
     protected $casts = [
         'is_correct' => 'boolean',
     ];
 
-    public function question()
+    public function minigameAnswer()
     {
-        return $this->belongsTo(QuizQuestion::class, 'question_id', 'id');
+        return $this->belongsTo(MinigameAnswer::class, 'id', 'id');
     }
 
-    public function quizMultipleChoiceAnswer()
+    public function crosswordWord()
     {
-        return $this->hasMany(QuizMultipleChoiceAnswer::class, 'answer_option_id', 'id');
+        return $this->belongsTo(CrosswordWord::class, 'word_id', 'id');
     }
 }

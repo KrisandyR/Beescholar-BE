@@ -2,30 +2,34 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Dialogue extends Scene
+class Dialogue extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $keyType = 'string';
     public $incrementing = false;
-
     protected $fillable = [
         'id',
-        'character_id',
-        'created_by',
-        'last_updated_by',
+        'character_id', // nullable
+        'dialogue_text',
     ];
+
+    public function scene()
+    {
+        return $this->belongsTo(Scene::class, 'id', 'id');
+    }
 
     public function character()
     {
-        return $this->belongsTo(Character::class);
+        return $this->belongsTo(Character::class, 'character_id', 'id');
     }
 
     public function dialogueOptions()
     {
-        return $this->hasMany(DialogueOption::class);
+        return $this->hasMany(DialogueOption::class, 'dialogue_id', 'id');
     }
 }

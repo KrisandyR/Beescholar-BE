@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DrumPuzzle extends Model
+class DrumPuzzleAnswer extends Model
 {
     use HasFactory, HasUuids;
 
@@ -15,15 +15,15 @@ class DrumPuzzle extends Model
 
     protected $fillable = [
         'id',
-        'total_hit',
-    ];
-    
-    protected $casts = [
-        'total_hit' => 'integer'
+        'pattern_answer',
     ];
 
-    public function minigame()
+    protected $casts = [
+        'pattern_answer' => 'array'
+    ];
+
+    public function minigameAnswer()
     {
-        return $this->belongsTo(Minigame::class, 'id', 'id');
+        return $this->belongsTo(MinigameAnswer::class, 'id', 'id');
     }
 }

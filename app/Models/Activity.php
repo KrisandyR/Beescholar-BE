@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Activity extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $keyType = 'string';
     public $incrementing = false;
@@ -18,13 +19,12 @@ class Activity extends Model
         'type',
         'description',
         'is_repeatable',
-        'priority',
-        'quest_id',
-        'room_id',
-        'scene_start_id',
-        'unlock_activity_id',
+        'priority', // default 1, lower value means higher priority
+        'quest_id', // nullable -> activity non quest
+        'room_id', // nullable -> activity non room based
+        'unlock_activity_id', // nullable
         'created_by',
-        'last_updated_by',
+        'updated_by',
     ];
 
     protected $casts = [
@@ -32,23 +32,28 @@ class Activity extends Model
         'priority' => 'integer',
     ];
 
-    public function quest()
-    {
-        return $this->belongsTo(Quest::class);
-    }
-
     public function room()
     {
-        return $this->belongsTo(Room::class);
+        return $this->belongsTo(Room::class, 'room_id', 'id');
+    }
+
+    public function quest()
+    {
+        return $this->belongsTo(Quest::class, 'quest_id', 'id');
+    }
+
+    public function unlockActivity()
+    {
+        return $this->belongsTo(Activity::class, 'unlock_activity_id', 'id');
     }
 
     public function activityProgress()
     {
-        return $this->hasMany(ActivityProgress::class);
+        return $this->hasMany(ActivityProgress::class, 'activity_id', 'id');
     }
 
     public function scenes()
     {
-        return $this->hasMany(Scene::class);
+        return $this->hasMany(Scene::class, 'activity_id', 'id');
     }
 }

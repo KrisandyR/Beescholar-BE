@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class CampusProgress extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $keyType = 'string';
     public $incrementing = false;
@@ -16,11 +17,11 @@ class CampusProgress extends Model
         'id',
         'user_id',
         'campus_id',
-        'is_locked',
-        'is_story_locked',
+        'is_locked', // Default true
+        'is_story_locked', // Default true
         'is_semester_locked',
         'created_by',
-        'last_updated_by',
+        'updated_by',
     ];
 
     protected $casts = [
@@ -31,11 +32,11 @@ class CampusProgress extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function campus()
     {
-        return $this->belongsTo(Campus::class);
+        return $this->belongsTo(Campus::class, 'campus_id', 'id');
     }
 }

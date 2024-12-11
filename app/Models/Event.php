@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Event extends Scene
+class Event extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $keyType = 'string';
     public $incrementing = false;
@@ -16,7 +17,11 @@ class Event extends Scene
         'id',
         'event_name',
         'event_type',
-        'created_by',
-        'last_updated_by',
     ];
+
+    public function scene()
+    {
+        return $this->belongsTo(Scene::class, 'id', 'id');
+    }
+
 }

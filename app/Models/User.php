@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $keyType = 'string';
     public $incrementing = false;
@@ -18,11 +19,13 @@ class User extends Model
         'role',
         'user_code',
         'academic_areer',
-        'total_point',
-        'completion_date',
+        'total_point', // Default 0
+        'completion_date', // Nullable
         'semester',
         'gender',
         'email',
+        'created_by',
+        'updated_by',
     ];
 
     protected $casts = [
@@ -33,6 +36,21 @@ class User extends Model
 
     public function campusProgress()
     {
-        return $this->hasMany(CampusProgress::class);
+        return $this->hasMany(CampusProgress::class, 'user_id', 'id');
+    }
+
+    public function questProgress()
+    {
+        return $this->hasMany(QuestProgress::class, 'user_id', 'id');
+    }
+
+    public function activityProgress()
+    {
+        return $this->hasMany(ActivityProgress::class, 'user_id', 'id');
+    }
+
+    public function minigameAttempt()
+    {
+        return $this->hasMany(MinigameAttempt::class, 'user_id', 'id');
     }
 }

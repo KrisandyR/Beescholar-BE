@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UserQuizAnswer;
+use App\Models\UserQuizMultipleChoiceAnswer;
 use Illuminate\Http\Request;
 
-class UserQuizAnswerController extends Controller
+class UserQuizMultipleChoiceAnswerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +26,7 @@ class UserQuizAnswerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(UserQuizAnswer $userQuizAnswer)
+    public function show(UserQuizMultipleChoiceAnswer $userQuizMultipleChoiceAnswer)
     {
         //
     }
@@ -34,7 +34,7 @@ class UserQuizAnswerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, UserQuizAnswer $userQuizAnswer)
+    public function update(Request $request, UserQuizMultipleChoiceAnswer $userQuizMultipleChoiceAnswer)
     {
         //
     }
@@ -42,7 +42,7 @@ class UserQuizAnswerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(UserQuizAnswer $userQuizAnswer)
+    public function destroy(UserQuizMultipleChoiceAnswer $userQuizMultipleChoiceAnswer)
     {
         //
     }

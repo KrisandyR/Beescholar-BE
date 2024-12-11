@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class QuestProgress extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
     protected $keyType = 'string';
     public $incrementing = false;
@@ -15,12 +16,12 @@ class QuestProgress extends Model
     protected $fillable = [
         'id',
         'status',
-        'is_completed',
-        'completion_date',
+        'is_completed', // Default false
+        'completion_date', // Nullable
         'quest_id',
         'user_id',
         'created_by',
-        'last_updated_by',
+        'updated_by',
     ];
 
     protected $casts = [
@@ -30,11 +31,16 @@ class QuestProgress extends Model
 
     public function quest()
     {
-        return $this->belongsTo(Quest::class);
+        return $this->belongsTo(Quest::class, 'quest_id', 'id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function userPointProgress()
+    {
+        return $this->hasOne(UserPointProgress::class, 'quest_progress_id', 'id');
     }
 }

@@ -24,6 +24,6 @@ class DrumPuzzle extends Model
 
     public function minigame()
     {
-        return $this->belongsTo(Minigame::class, 'id', 'id');
+        return $this->morphOne(Minigame::class, 'minigameable');
     }
 }

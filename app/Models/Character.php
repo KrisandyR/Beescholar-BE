@@ -17,7 +17,7 @@ class Character extends Model
         'id',
         'campus_id', // Nullable
         'character_name',
-        'role',
+        'roles',
         'description',
         'gender',
         'likes',
@@ -27,6 +27,7 @@ class Character extends Model
     ];
 
     protected $casts = [
+        'roles' => 'array',
         'likes' => 'array',
         'dislikes' => 'array',
     ];

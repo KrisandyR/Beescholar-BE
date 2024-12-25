@@ -14,17 +14,12 @@ class Crossword extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'grid_size',
         'theme',
-    ];
-
-    protected $casts = [
-        'grid_size' => 'integer'
     ];
 
     public function minigame()
     {
-        return $this->belongsTo(Minigame::class, 'id', 'id');
+        return $this->morphOne(Minigame::class, 'minigameable');
     }
 
     public function crosswordWords()

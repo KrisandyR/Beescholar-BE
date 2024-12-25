@@ -49,19 +49,9 @@ class Scene extends Model
         return $this->hasMany(DialogueOption::class, 'next_scene_id', 'id');
     }
 
-    public function dialogue()
+    public function sceneable()
     {
-        return $this->hasOne(Dialogue::class, 'id', 'id');
-    }
-
-    public function event()
-    {
-        return $this->hasOne(Event::class, 'id', 'id');
-    }
-
-    public function minigame()
-    {
-        return $this->hasOne(Minigame::class, 'id', 'id');
+        return $this->morphTo();
     }
 
 }

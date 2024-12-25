@@ -18,7 +18,7 @@ class User extends Model
         'name',
         'role',
         'user_code',
-        'academic_areer',
+        'academic_career',
         'total_point', // Default 0
         'completion_date', // Nullable
         'semester',

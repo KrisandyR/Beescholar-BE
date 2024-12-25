@@ -75,8 +75,8 @@ return new class extends Migration
         });
 
         Schema::table('dialogues', function (Blueprint $table) {
-            $table->foreign('id')->references('id')
-                ->on('scenes')->onDelete('cascade');
+            // $table->foreign('id')->references('id')
+            //     ->on('scenes')->onDelete('cascade');
             $table->foreign('character_id')->references('id')
                 ->on('characters')->onDelete(self::ON_DELETE_SET_NULL);
         });
@@ -88,20 +88,20 @@ return new class extends Migration
                 ->on('scenes')->onDelete(self::ON_DELETE_SET_NULL);
         });
 
-        Schema::table('events', function (Blueprint $table) {
-            $table->foreign('id')->references('id')
-                ->on('scenes')->onDelete('cascade');
-        });
+        // Schema::table('events', function (Blueprint $table) {
+        //     $table->foreign('id')->references('id')
+        //         ->on('scenes')->onDelete('cascade');
+        // });
 
-        Schema::table('minigames', function (Blueprint $table) {
-            $table->foreign('id')->references('id')
-                ->on('scenes')->onDelete('cascade');
-        });
+        // Schema::table('minigames', function (Blueprint $table) {
+        //     $table->foreign('id')->references('id')
+        //         ->on('scenes')->onDelete('cascade');
+        // });
 
-        Schema::table('quizzes', function (Blueprint $table) {
-            $table->foreign('id')->references('id')
-                ->on('minigames')->onDelete('cascade');
-        });
+        // Schema::table('quizzes', function (Blueprint $table) {
+        //     $table->foreign('id')->references('id')
+        //         ->on('minigames')->onDelete('cascade');
+        // });
 
         Schema::table('quiz_questions', function (Blueprint $table) {
             $table->foreign('character_id')->references('id')
@@ -110,7 +110,7 @@ return new class extends Migration
                 ->on('quizzes')->onDelete('cascade');
         });
 
-        Schema::table('quiz_options', function (Blueprint $table) {
+        Schema::table('quiz_choices', function (Blueprint $table) {
             $table->foreign('question_id')->references('id')
                 ->on('quiz_questions')->onDelete('cascade');
         });
@@ -120,20 +120,20 @@ return new class extends Migration
                 ->on('quiz_questions')->onDelete('cascade');
         });
 
-        Schema::table('crosswords', function (Blueprint $table) {
-            $table->foreign('id')->references('id')
-                ->on('minigames')->onDelete('cascade');
-        });
+        // Schema::table('crosswords', function (Blueprint $table) {
+        //     $table->foreign('id')->references('id')
+        //         ->on('minigames')->onDelete('cascade');
+        // });
 
         Schema::table('crossword_words', function (Blueprint $table) {
             $table->foreign('crossword_id')->references('id')
                 ->on('crosswords')->onDelete('cascade');
         });
 
-        Schema::table('drum_puzzles', function (Blueprint $table) {
-            $table->foreign('id')->references('id')
-                ->on('minigames')->onDelete('cascade');
-        });
+        // Schema::table('drum_puzzles', function (Blueprint $table) {
+        //     $table->foreign('id')->references('id')
+        //         ->on('minigames')->onDelete('cascade');
+        // });
 
         Schema::table('minigame_attempts', function (Blueprint $table) {
             $table->foreign('minigame_id')->references('id')
@@ -149,15 +149,15 @@ return new class extends Migration
 
         Schema::table('quiz_multiple_choice_answers', function (Blueprint $table) {
             $table->foreign('answer_option_id')->references('id')
-                ->on('quiz_options')->onDelete('cascade');
-            $table->foreign('id')->references('id')
-                ->on('minigame_answers')->onDelete('cascade');
+                ->on('quiz_choices')->onDelete('cascade');
+            // $table->foreign('id')->references('id')
+            //     ->on('minigame_answers')->onDelete('cascade');
         });
 
-        Schema::table('quiz_order_steps_answers', function (Blueprint $table) {
-            $table->foreign('id')->references('id')
-                ->on('minigame_answers')->onDelete('cascade');
-        });
+        // Schema::table('quiz_order_steps_answers', function (Blueprint $table) {
+        //     $table->foreign('id')->references('id')
+        //         ->on('minigame_answers')->onDelete('cascade');
+        // });
 
         Schema::table('quiz_order_steps_answer_details', function (Blueprint $table) {
             $table->foreign('answer_step_id')->references('id')
@@ -169,13 +169,13 @@ return new class extends Migration
         Schema::table('crossword_answers', function (Blueprint $table) {
             $table->foreign('word_id')->references('id')
                 ->on('crossword_words')->onDelete('cascade');
-            $table->foreign('id')->references('id')
-                ->on('minigame_answers')->onDelete('cascade');
+            // $table->foreign('id')->references('id')
+            //     ->on('minigame_answers')->onDelete('cascade');
         });
 
         Schema::table('drum_puzzle_answers', function (Blueprint $table) {
-            $table->foreign('id')->references('id')
-                ->on('minigame_answers')->onDelete('cascade');
+            // $table->foreign('id')->references('id')
+            //     ->on('minigame_answers')->onDelete('cascade');
         });
 
         Schema::table('user_point_progress', function (Blueprint $table) {

@@ -62,6 +62,7 @@ return new class extends Migration
             $table->uuid('campus_id');
             $table->string('room_name');
             $table->string('type');
+            $table->string('background');
             $table->timestamps();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
@@ -71,7 +72,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('campus_id')->nullable();
             $table->string('character_name');
-            $table->string('role');
+            $table->json('roles');
             $table->string('description');
             $table->string('gender');
             $table->json('likes');
@@ -114,6 +115,7 @@ return new class extends Migration
             $table->string("type");
             $table->string('description');
             $table->boolean('is_repeatable');
+            $table->integer('completion_point');
             $table->integer('priority')->default(1);
             $table->uuid('quest_id')->nullable();
             $table->uuid('room_id')->nullable();
@@ -138,11 +140,13 @@ return new class extends Migration
 
         Schema::create('scenes', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('background');
+            $table->string('background')->nullable();
             $table->boolean('is_start_scene')->default(false);
             $table->boolean('is_end_scene')->default(false);
             $table->uuid('next_scene_id')->nullable();
             $table->uuid('activity_id');
+            $table->uuid('sceneable_id')->nullable();
+            $table->string('sceneable_type')->nullable();
             $table->timestamps();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
@@ -152,6 +156,9 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('dialogue_text');
             $table->uuid('character_id')->nullable();
+            $table->timestamps();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
         });
 
         Schema::create('dialogue_options', function (Blueprint $table) {
@@ -168,6 +175,9 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('event_name');
             $table->string('event_type');
+            $table->timestamps();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
         });
 
         Schema::create('minigames', function (Blueprint $table) {
@@ -176,12 +186,21 @@ return new class extends Migration
             $table->string('instruction');
             $table->integer('maximum_point_reward');
             $table->integer('minimum_passing_point')->default(0);
+            $table->uuid('minigameable_id')->nullable();
+            $table->string('minigameable_type')->nullable();
+            $table->timestamps();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
         });
 
         Schema::create('quizzes', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('quiz_type');
             $table->string('quiz_topic');
+            $table->string('hint')->nullable();
+            $table->timestamps();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
         });
         
         Schema::create('quiz_questions', function (Blueprint $table) {
@@ -189,7 +208,6 @@ return new class extends Migration
             $table->string('question_title');
             $table->string('question_type');
             $table->integer('question_point');
-            $table->string('hint')->nullable();
             $table->uuid('quiz_id');
             $table->uuid('character_id')->nullable();
             $table->timestamps();
@@ -197,7 +215,7 @@ return new class extends Migration
             $table->string('updated_by')->nullable();
         });
 
-        Schema::create('quiz_options', function (Blueprint $table) {
+        Schema::create('quiz_choices', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('option_text');
             $table->boolean('is_correct')->default(false);
@@ -219,8 +237,10 @@ return new class extends Migration
 
         Schema::create('crosswords', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->integer('grid_size');
             $table->string('theme');
+            $table->timestamps();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
         });
 
         Schema::create('crossword_words', function (Blueprint $table) {
@@ -239,6 +259,9 @@ return new class extends Migration
         Schema::create('drum_puzzles', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->integer('total_hit');
+            $table->timestamps();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
         });
 
         Schema::create('minigame_attempts', function (Blueprint $table) {
@@ -257,6 +280,7 @@ return new class extends Migration
             $table->integer('answer_point')->default(0);
             $table->string('status');
             $table->uuid('minigame_attempt_id');
+            $table->nullableMorphs('answerable');
             $table->timestamps();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
@@ -266,11 +290,17 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('answer_option_id');
             $table->boolean('is_correct')->default(false);
+            $table->timestamps();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
         });
 
         Schema::create('quiz_order_steps_answers', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->boolean('is_correct')->default(false);
+            $table->timestamps();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
         });
 
         Schema::create('quiz_order_steps_answer_details', function (Blueprint $table) {
@@ -288,11 +318,17 @@ return new class extends Migration
             $table->uuid('word_id');
             $table->string('word_answer');
             $table->boolean('is_correct')->default(false);
+            $table->timestamps();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
         });
 
         Schema::create('drum_puzzle_answers', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->json('pattern_answer');
+            $table->timestamps();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
         });
 
         Schema::create('user_point_progress', function (Blueprint $table) {
@@ -328,7 +364,7 @@ return new class extends Migration
         Schema::dropIfExists('crossword_words');
         Schema::dropIfExists('crosswords');
         Schema::dropIfExists('quiz_steps');
-        Schema::dropIfExists('quiz_options');
+        Schema::dropIfExists('quiz_choices');
         Schema::dropIfExists('quiz_questions');
         Schema::dropIfExists('quizzes');
         Schema::dropIfExists('minigames');

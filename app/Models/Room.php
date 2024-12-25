@@ -18,6 +18,7 @@ class Room extends Model
         'campus_id',
         'room_name',
         'type',
+        'background',
         'created_by',
         'updated_by',
     ];

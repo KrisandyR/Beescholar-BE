@@ -24,7 +24,7 @@ class QuizOrderStepsAnswer extends Model
 
     public function minigameAnswer()
     {
-        return $this->belongsTo(MinigameAnswer::class, 'id', 'id');
+        return $this->morphOne(MinigameAnswer::class, 'answerable');
     }
 
     public function details()

@@ -25,11 +25,11 @@ class QuizMultipleChoiceAnswer extends Model
 
     public function minigameAnswer()
     {
-        return $this->belongsTo(MinigameAnswer::class, 'id', 'id');
+        return $this->morphOne(MinigameAnswer::class, 'answerable');
     }
 
-    public function options()
+    public function choice()
     {
-        return $this->belongsTo(QuizOption::class, 'answer_option_id', 'id');
+        return $this->belongsTo(QuizChoice::class, 'answer_option_id', 'id');
     }
 }

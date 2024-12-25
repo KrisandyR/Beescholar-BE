@@ -18,7 +18,6 @@ class QuizQuestion extends Model
         'question_title',
         'question_type',
         'question_point',
-        'hint', // nullable
         'character_id', // nullable
         'quiz_id',
         'created_by',
@@ -29,9 +28,9 @@ class QuizQuestion extends Model
         'question_point' => 'integer'
     ];
 
-    public function options()
+    public function choices()
     {
-        return $this->hasMany(QuizOption::class, 'question_id', 'id');
+        return $this->hasMany(QuizChoice::class, 'question_id', 'id');
     }
 
     public function steps()

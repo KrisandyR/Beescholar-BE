@@ -19,6 +19,7 @@ class Activity extends Model
         'type',
         'description',
         'is_repeatable',
+        'completion_point',
         'priority', // default 1, lower value means higher priority
         'quest_id', // nullable -> activity non quest
         'room_id', // nullable -> activity non room based
@@ -29,6 +30,7 @@ class Activity extends Model
 
     protected $casts = [
         'is_repeatable' => 'boolean',
+        'completion_point' => 'integer',
         'priority' => 'integer',
     ];
 

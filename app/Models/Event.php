@@ -21,7 +21,7 @@ class Event extends Model
 
     public function scene()
     {
-        return $this->belongsTo(Scene::class, 'id', 'id');
+        return $this->morphOne(Scene::class, 'sceneable');
     }
 
 }

@@ -28,7 +28,12 @@ class Minigame extends Model
 
     public function scene()
     {
-        return $this->belongsTo(Scene::class, 'id', 'id');
+        return $this->morphOne(Scene::class, 'sceneable');
+    }
+
+    public function minigameable()
+    {
+        return $this->morphTo();
     }
 
     public function minigameAttempt()
@@ -36,18 +41,4 @@ class Minigame extends Model
         return $this->hasMany(MinigameAttempt::class, 'minigame_id', 'id');
     }
 
-    public function quiz()
-    {
-        return $this->hasOne(Quiz::class, 'id', 'id');
-    }
-
-    public function crossword()
-    {
-        return $this->hasOne(Crossword::class, 'id', 'id');
-    }
-
-    public function drumPuzzle()
-    {
-        return $this->hasOne(DrumPuzzle::class, 'id', 'id');
-    }
 }

@@ -31,23 +31,7 @@ class MinigameAnswer extends Model
         return $this->belongsTo(MinigameAttempt::class, 'minigame_attempt_id', 'id');
     }
 
-    public function drumPuzzleAnswer()
-    {
-        return $this->hasOne(DrumPuzzleAnswer::class, 'id', 'id');
-    }
-
-    public function crosswordAnswer()
-    {
-        return $this->hasOne(CrosswordAnswer::class, 'id', 'id');
-    }
-
-    public function quizOrderStepsAnswer()
-    {
-        return $this->hasOne(QuizOrderStepsAnswer::class, 'id', 'id');
-    }
-
-    public function quizMultipleChoiceAnswer()
-    {
-        return $this->hasOne(QuizMultipleChoiceAnswer::class, 'id', 'id');
+    public function answerable(){
+        return $this->morphTo();
     }
 }

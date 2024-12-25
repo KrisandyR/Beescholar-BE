@@ -15,12 +15,13 @@ class Quiz extends Model
     protected $fillable = [
         'id',
         'quiz_type',
-        'quiz_topic'
+        'quiz_topic',
+        'hint', // nullable
     ];
 
     public function minigame()
     {
-        return $this->belongsTo(Minigame::class, 'id', 'id');
+        return $this->morphOne(Minigame::class, 'minigameable');
     }
 
     public function questions()

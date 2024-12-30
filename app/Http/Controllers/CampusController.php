@@ -2,48 +2,39 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CampusResource;
 use App\Models\Campus;
+use App\Models\CampusProgress;
+use App\Services\CampusService;
 use Illuminate\Http\Request;
 
 class CampusController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+    protected $campusService;
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function __construct(CampusService $campusService)
     {
-        //
+        $this->campusService = $campusService;
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Campus $campus)
+    
+    public function getUnlockedCampus(string $userId)
     {
-        //
-    }
+        try {
+            $data = $this->campusService->getUnlockedCampus($userId);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Campus $campus)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Campus $campus)
-    {
-        //
+            if ($data->isEmpty()){
+                return response()->json([
+                    'success' => false,
+                    'message' => 'User not found',
+                ], 404);
+            }
+    
+            return response()->json([
+                'success' => true,
+                'data' => CampusResource::collection($data)
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400); // Bad Request
+        }
     }
 }

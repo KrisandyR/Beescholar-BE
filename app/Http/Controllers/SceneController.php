@@ -3,47 +3,70 @@
 namespace App\Http\Controllers;
 
 use App\Models\Scene;
+use App\Services\ActivityService;
+use App\Services\QuestService;
+use App\Services\SceneService;
 use Illuminate\Http\Request;
 
 class SceneController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    protected $sceneService;
+    protected $activityService;
+    protected $questService;
+
+    public function __construct(SceneService $sceneService, ActivityService $activityService, QuestService $questService)
     {
-        //
+        $this->sceneService = $sceneService;
+        $this->activityService = $activityService;
+        $this->questService = $questService;
+    }
+    public function getScene($sceneId)
+    {
+        try{
+            if(!$this->sceneService->getScene($sceneId)){
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Scene not found',
+                ], 404);
+            }
+
+            $data = $this->sceneService->getSceneDetail($sceneId);
+
+            return response()->json([
+                'success' => true,
+                'message' => $data,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400); // Bad Request
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function processScene($sceneId) {
+        try{
+            //Implement auth userId
+            $userId = config('constants.default_user_id');
+            $scene = $this->sceneService->getScene($sceneId);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Scene $scene)
-    {
-        //
-    }
+            if(!$scene){
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Scene not found',
+                ], 404);
+            }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Scene $scene)
-    {
-        //
-    }
+            $activityCompletionPerformed = $this->activityService->progressUserActivity($userId, $scene);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Scene $scene)
-    {
-        //
+            if($activityCompletionPerformed){
+                $this->questService->progressUserQuest($userId, $scene->activity_id);
+            }
+            
+            return response()->json([
+                'success' => true,
+                'message' => 'Scene succesfully processed',
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400); // Bad Request
+        }
     }
+    
 }

@@ -2,63 +2,45 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\QuestActivityResource;
 use App\Models\Activity;
+use App\Models\Quest;
+use App\Services\ActivityService;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class ActivityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-        return response()->json([[
-            "ok" => true,
-            "name" => "get"
-        ], "status" => 200]);
-    }
+    protected $activityService;
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function __construct(ActivityService $activityService)
     {
-        //
-        return response()->json([[
-            "ok" => true,
-            "name" => "post"
-        ], "status" => 200]);
+        $this->activityService = $activityService;
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Activity $activity)
+    public function getActivityFromRoom(string $roomId)
     {
-        //
-    }
+        try {
+            $userId = config('constants.default_user_id');
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Activity $activity)
-    {
-        //
-    }
+            // Use service to get quests with activities
+            $questWithActivities = $this->activityService->getQuestsWithActivities($roomId, $userId);
+    
+            // Handle empty results
+            if ($questWithActivities->isEmpty()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'No activities found for the specified room and user.',
+                ], 404);
+            }
+    
+            // Transform and return data
+            return response()->json([
+                'success' => true,
+                'data' => QuestActivityResource::collection($questWithActivities),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400); // Bad Request
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Activity $activity)
-    {
-        //
-    }
-
-    public function test(Request $request){
-        return response()->json([[
-            "ok" => true,
-            "name" => "hehe"
-        ], "status" => 200]);
     }
 }

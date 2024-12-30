@@ -1,8 +1,14 @@
 <?php
 
+use App\Http\Controllers\LeaderboardController;
+use App\Http\Controllers\MinigameController;
+use App\Http\Controllers\SceneController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\CampusController;
+use App\Http\Controllers\CharacterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +25,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('tests', ActivityController::class);
+Route::get('/characters/{campusName}', [CharacterController::class, 'getCharactersBasedOnCampus']);
+Route::get('/activity/{roomId}', [ActivityController::class, 'getActivityFromRoom']);
+Route::get('/campus/{userId}', [CampusController::class, 'getUnlockedCampus']);
+Route::get('/minigame/{minigameId}', [MinigameController::class, 'getMinigame']);
+Route::get('/scene/{sceneId}', [SceneController::class, 'getScene']);
+Route::post('/process_scene/{sceneId}', [SceneController::class, 'processScene']);
+Route::get('/user/{userId}', [UserController::class, 'getUser']);
+
+Route::prefix('leaderboard')->group(function () {
+    Route::get('stats/{userId}', [LeaderboardController::class, 'getPersonalStats']);
+    Route::get('{leaderboardType}/{userId}', [LeaderboardController::class, 'getLeaderboard']);
+});

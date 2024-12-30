@@ -2,48 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Minigame;
-use Illuminate\Http\Request;
+use App\Services\MinigameService;
+
 
 class MinigameController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+    protected $minigameService;
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function __construct(MinigameService $minigameService)
     {
-        //
+        $this->minigameService = $minigameService;
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Minigame $minigame)
+    public function getMinigame(string $minigameId)
     {
-        //
-    }
+        try{
+            if(!$this->minigameService->findMinigame($minigameId)){
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Minigame not found',
+                ], 404);
+            }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Minigame $minigame)
-    {
-        //
-    }
+            $data = $this->minigameService->getMinigame($minigameId);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Minigame $minigame)
-    {
-        //
+            return response()->json([
+                'success' => true,
+                'message' => $data,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400); // Bad Request
+        }
     }
 }

@@ -370,7 +370,7 @@ class ActivitySceneSeeder5 extends Seeder
             if (isset($question['choices'])) {
                 foreach ($question['choices'] as $choice) {
                     QuizChoice::create([
-                        'option_text' => $choice['text'],
+                        'choice_text' => $choice['text'],
                         'is_correct' => $choice['correct'],
                         'question_id' => $quizQuestion->id,
                         'created_by' => 'SceneDialogueSeeder',
@@ -416,10 +416,10 @@ class ActivitySceneSeeder5 extends Seeder
         ]);
     }
 
-    public function createDialogueOption(string $dialogueId, string $optionText)
+    public function createDialogueOption(string $dialogueId, string $choiceText)
     {
         return DialogueOption::create([
-            'option_text' => $optionText,
+            'option_text' => $choiceText,
             'dialogue_id' => $dialogueId,
             'created_by' => 'SceneDialogueSeeder',
             'updated_by' => null

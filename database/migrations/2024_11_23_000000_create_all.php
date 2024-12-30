@@ -29,6 +29,7 @@ return new class extends Migration
             $table->integer('semester');
             $table->string('gender');
             $table->string('email');
+            $table->string('profile_picture')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->string('created_by')->nullable();
@@ -217,7 +218,7 @@ return new class extends Migration
 
         Schema::create('quiz_choices', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('option_text');
+            $table->string('choice_text');
             $table->boolean('is_correct')->default(false);
             $table->uuid('question_id');
             $table->timestamps();
@@ -337,9 +338,9 @@ return new class extends Migration
             $table->integer('point_gained')->default(0);
             $table->string('point_source');
             $table->uuid('user_id');
-            $table->uuid('quest_progress_id');
-            $table->uuid('activity_progress_id');
-            $table->uuid('minigame_attempt_id');
+            $table->uuid('quest_progress_id')->nullable();
+            $table->uuid('activity_progress_id')->nullable();
+            $table->uuid('minigame_attempt_id')->nullable();
             $table->timestamps();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

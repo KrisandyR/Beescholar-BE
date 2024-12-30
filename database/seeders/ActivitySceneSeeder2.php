@@ -363,10 +363,10 @@ class ActivitySceneSeeder2 extends Seeder
         ]);
     }
 
-    public function createDialogueOption(string $dialogueId, string $optionText)
+    public function createDialogueOption(string $dialogueId, string $choiceText)
     {
         return DialogueOption::create([
-            'option_text' => $optionText,
+            'option_text' => $choiceText,
             'dialogue_id' => $dialogueId,
             'created_by' => 'SceneDialogueSeeder',
             'updated_by' => null
@@ -415,7 +415,7 @@ class ActivitySceneSeeder2 extends Seeder
         ]);
 
         QuizChoice::create([
-            'option_text' => 'Visit BINUSMAYA and click "GET YOUR USERNAME".',
+            'choice_text' => 'Visit BINUSMAYA and click "GET YOUR USERNAME".',
             'is_correct' => true,
             'question_id' => $question1->id,
             'created_by' => 'SceneDialogueSeeder',
@@ -423,7 +423,7 @@ class ActivitySceneSeeder2 extends Seeder
         ]);
 
         QuizChoice::create([
-            'option_text' => 'Request it from your lecturer.',
+            'choice_text' => 'Request it from your lecturer.',
             'is_correct' => false,
             'question_id' => $question1->id,
             'created_by' => 'SceneDialogueSeeder',
@@ -431,7 +431,7 @@ class ActivitySceneSeeder2 extends Seeder
         ]);
 
         QuizChoice::create([
-            'option_text' => 'Contact the BINUS IT Support team directly.',
+            'choice_text' => 'Contact the BINUS IT Support team directly.',
             'is_correct' => false,
             'question_id' => $question1->id,
             'created_by' => 'SceneDialogueSeeder',
@@ -450,7 +450,7 @@ class ActivitySceneSeeder2 extends Seeder
         ]);
 
         QuizChoice::create([
-            'option_text' => 'In BINUSMAYA under Schedule > View Academic Calendar.',
+            'choice_text' => 'In BINUSMAYA under Schedule > View Academic Calendar.',
             'is_correct' => true,
             'question_id' => $question2->id,
             'created_by' => 'SceneDialogueSeeder',
@@ -458,7 +458,7 @@ class ActivitySceneSeeder2 extends Seeder
         ]);
 
         QuizChoice::create([
-            'option_text' => 'On the BINUS website homepage.',
+            'choice_text' => 'On the BINUS website homepage.',
             'is_correct' => false,
             'question_id' => $question2->id,
             'created_by' => 'SceneDialogueSeeder',
@@ -466,7 +466,7 @@ class ActivitySceneSeeder2 extends Seeder
         ]);
 
         QuizChoice::create([
-            'option_text' => 'Through the Student Service Center.',
+            'choice_text' => 'Through the Student Service Center.',
             'is_correct' => false,
             'question_id' => $question2->id,
             'created_by' => 'SceneDialogueSeeder',
@@ -485,7 +485,7 @@ class ActivitySceneSeeder2 extends Seeder
         ]);
 
         QuizChoice::create([
-            'option_text' => 'To prepare for the upcoming semester and track completed courses.',
+            'choice_text' => 'To prepare for the upcoming semester and track completed courses.',
             'is_correct' => true,
             'question_id' => $question3->id,
             'created_by' => 'SceneDialogueSeeder',
@@ -493,7 +493,7 @@ class ActivitySceneSeeder2 extends Seeder
         ]);
 
         QuizChoice::create([
-            'option_text' => 'To get extra credit for past semesters.',
+            'choice_text' => 'To get extra credit for past semesters.',
             'is_correct' => false,
             'question_id' => $question3->id,
             'created_by' => 'SceneDialogueSeeder',
@@ -501,7 +501,7 @@ class ActivitySceneSeeder2 extends Seeder
         ]);
 
         QuizChoice::create([
-            'option_text' => 'To avoid attending unnecessary classes.',
+            'choice_text' => 'To avoid attending unnecessary classes.',
             'is_correct' => false,
             'question_id' => $question3->id,
             'created_by' => 'SceneDialogueSeeder',
@@ -520,7 +520,7 @@ class ActivitySceneSeeder2 extends Seeder
         ]);
 
         QuizChoice::create([
-            'option_text' => 'In BINUSMAYA under Academic Services > Attendance Information.',
+            'choice_text' => 'In BINUSMAYA under Academic Services > Attendance Information.',
             'is_correct' => true,
             'question_id' => $question4->id,
             'created_by' => 'SceneDialogueSeeder',
@@ -528,7 +528,7 @@ class ActivitySceneSeeder2 extends Seeder
         ]);
 
         QuizChoice::create([
-            'option_text' => 'Through the Student Handbook.',
+            'choice_text' => 'Through the Student Handbook.',
             'is_correct' => false,
             'question_id' => $question4->id,
             'created_by' => 'SceneDialogueSeeder',
@@ -536,7 +536,7 @@ class ActivitySceneSeeder2 extends Seeder
         ]);
 
         QuizChoice::create([
-            'option_text' => 'From the Student Affairs Office.',
+            'choice_text' => 'From the Student Affairs Office.',
             'is_correct' => false,
             'question_id' => $question4->id,
             'created_by' => 'SceneDialogueSeeder',

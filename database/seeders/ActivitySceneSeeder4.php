@@ -227,10 +227,10 @@ class ActivitySceneSeeder4 extends Seeder
         ]);
     }
 
-    public function createDialogueOption(string $dialogueId, string $optionText)
+    public function createDialogueOption(string $dialogueId, string $choiceText)
     {
         return DialogueOption::create([
-            'option_text' => $optionText,
+            'option_text' => $choiceText,
             'dialogue_id' => $dialogueId,
             'created_by' => 'SceneDialogueSeeder',
             'updated_by' => null

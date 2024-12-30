@@ -14,6 +14,7 @@ class Crossword extends Model
     public $incrementing = false;
 
     protected $fillable = [
+        'id',
         'theme',
     ];
 

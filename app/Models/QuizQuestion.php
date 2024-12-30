@@ -13,6 +13,10 @@ class QuizQuestion extends Model
     protected $keyType = 'string';
     public $incrementing = false;
 
+    public const TYPE_MULTIPLE_CHOICE = 'Multiple Choice';
+    public const TYPE_YES_NO = 'Yes or No';
+    public const TYPE_REORDER_STEPS = 'Reorder Steps';
+
     protected $fillable = [
         'id',
         'question_title',

@@ -53,4 +53,9 @@ class User extends Model
     {
         return $this->hasMany(MinigameAttempt::class, 'user_id', 'id');
     }
+
+    public function addPoints($pointGained)
+    {
+        $this->increment('total_point', $pointGained);
+    }
 }

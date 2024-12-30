@@ -58,4 +58,10 @@ class Activity extends Model
     {
         return $this->hasMany(Scene::class, 'activity_id', 'id');
     }
+
+    public function firstScene()
+    {
+        return $this->hasOne(Scene::class, 'activity_id', 'id')
+            ->where('is_start_scene', true);
+    }
 }

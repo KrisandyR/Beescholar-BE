@@ -15,7 +15,7 @@ class QuizChoice extends Model
 
     protected $fillable = [
         'id',
-        'option_text',
+        'choice_text',
         'is_correct', // default false
         'question_id',
         'created_by',

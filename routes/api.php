@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\MinigameController;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SceneController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -28,6 +29,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/characters/{campusName}', [CharacterController::class, 'getCharactersBasedOnCampus']);
 Route::get('/activity/{roomId}', [ActivityController::class, 'getActivityFromRoom']);
 Route::get('/campus/{userId}', [CampusController::class, 'getUnlockedCampus']);
+Route::get('/room/{campusId}', [RoomController::class, 'getRoomFromCampus']);
 Route::get('/minigame/{minigameId}', [MinigameController::class, 'getMinigame']);
 Route::get('/scene/{sceneId}', [SceneController::class, 'getScene']);
 Route::post('/process_scene/{sceneId}', [SceneController::class, 'processScene']);

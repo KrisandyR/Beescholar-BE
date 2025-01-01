@@ -44,8 +44,6 @@ class QuestService
                 return $progress->is_completed;
             }) && $questActivityIds->count() == $activityProgresses->count();
 
-            dump($allActivityCompleted, $questActivityIds->count(), $questActivityIds->count() == $activityProgresses->count());
-
             if(!$allActivityCompleted) {
                 return;
             }

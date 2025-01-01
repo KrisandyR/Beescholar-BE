@@ -125,10 +125,6 @@ class ActivityService
             ActivityProgress::create($values);
         }
 
-        dump([
-            'completionPerformed' => $completionPerformed
-        ]);
-
         return $completionPerformed;
     }
 

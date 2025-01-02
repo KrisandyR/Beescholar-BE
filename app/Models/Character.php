@@ -42,7 +42,7 @@ class Character extends Model
         return $this->hasMany(Dialogue::class, 'character_id', 'id');
     }
 
-    public function quizQuestions() 
+    public function quizQuestions()
     {
         return $this->hasMany(QuizQuestion::class,'character_id', 'id');
     }

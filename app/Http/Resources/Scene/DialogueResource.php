@@ -17,6 +17,7 @@ class DialogueResource extends JsonResource
             'nextSceneId' => $this->next_scene_id,
             'dialogueId' => $this->id,
             'characterId' => $this->character_id,
+            'characterName' => $this->character_name,
             'dialogueText' => $this->dialogue_text,
             'options' => DialogueOptionResource::collection($this->options)
         ];

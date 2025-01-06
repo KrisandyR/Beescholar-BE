@@ -20,6 +20,7 @@ class LeaderboardPointResource extends JsonResource
             'userCode' => $this->user_code,
             'profilePicture' => $this->profile_picture,
             'totalPoint' => $this->total_point,
+            'rank' => $this->rank
         ];
     }
 }

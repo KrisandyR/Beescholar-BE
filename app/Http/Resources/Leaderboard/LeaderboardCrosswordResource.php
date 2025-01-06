@@ -20,6 +20,7 @@ class LeaderboardCrosswordResource extends JsonResource
             'userCode' => $this->user_code,
             'profilePicture' => $this->profile_picture,
             'totalCrossword' => $this->total_crossword,
+            'rank' => $this->rank
         ];
     }
 }

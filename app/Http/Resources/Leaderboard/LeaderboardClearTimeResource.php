@@ -20,6 +20,7 @@ class LeaderboardClearTimeResource extends JsonResource
             'userCode' => $this->user_code,
             'profilePicture' => $this->profile_picture,
             'completionDate' => $this->completion_date,
+            'rank' => $this->rank
         ];
     }
 }

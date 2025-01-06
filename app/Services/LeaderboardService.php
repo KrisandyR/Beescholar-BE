@@ -2,30 +2,28 @@
 
 namespace App\Services;
 
-use App\Models\Activity;
-use App\Models\ActivityProgress;
-use App\Models\Campus;
-use App\Models\CampusProgress;
-use App\Models\Crossword;
-use App\Models\Minigame;
-use App\Models\MinigameAttempt;
-use App\Models\Quest;
-use App\Models\QuestProgress;
-use App\Models\User;
-use Illuminate\Database\Eloquent\Collection;
 
-use function PHPUnit\Framework\isEmpty;
+use App\Models\User;
+
 
 class LeaderboardService
 {
-    public function getFromClearTime(string $userId){
-        $topUsers = User::whereNotNull('completion_date') // Ensure completion_date is not null
-            ->orderBy('completion_date', 'asc')          // Primary order by completion_date
-            ->orderBy('total_point', 'desc')             // Secondary order by total_point
-            ->take(10)                                   // Limit to top 10 users
-            ->get();
 
-        $currentUser = User::find($userId);
+    public function getFromClearTime(string $userId){
+        $topUsers = User::whereNotNull('completion_date')
+            ->orderBy('completion_date', 'asc')
+            ->orderBy('total_point', 'desc')
+            ->take(15)
+            ->get();
+            
+        $currentUser = User::findOrFail($userId);
+
+        $topUsers = $topUsers->map(function ($user, $index) {
+            $user->rank = $index + 1;
+            return $user;
+        });
+        
+        $currentUser->rank = $currentUser->calculateRankByClearTime();
 
         return collect([
             'topUsers' => $topUsers,
@@ -33,14 +31,18 @@ class LeaderboardService
         ]);
     }
 
-    public function getFromPoint(string $userId){
-        $topUsers = User::whereNotNull('completion_date') // Ensure completion_date is not null
-            ->orderBy('total_point', 'desc')
-            ->orderBy('completion_date', 'asc')          // Primary order by completion_date           // Secondary order by total_point
-            ->take(10)                                   // Limit to top 10 users
+    public function getFromPoint(string $userId)
+    {
+        $topUsers = User::orderBy('total_point', 'desc')
+            ->orderBy('completion_date', 'asc')
+            ->take(15)
             ->get();
+    
+        $currentUser = User::findOrFail($userId);
 
-        $currentUser = User::find($userId);
+        $topUsers = $this->calculateUsersRankByPoint($topUsers);
+
+        $currentUser->rank = $currentUser->calculateRankByPoint();
 
         return collect([
             'topUsers' => $topUsers,
@@ -52,110 +54,51 @@ class LeaderboardService
         
     }
 
-    public function getUserGameStats(string $userId)
+    private function calculateUsersRankByPoint($users)
     {
-        $user = User::find($userId);
-
-        if (!$user){
-            return [];
-        }
-
-        $userData = [
-            'id' => $user->id,
-            'name' => $user->name,
-            'totalPoint' => $user->total_point,
-            'completionDate' => $user->completion_date,
-        ];
-
-        $activityProgress = $this->getUserActivityProgress($userId);
-        $questProgress = $this->getUserQuestProgress($userId);
-        $crosswordProgress = $this->getUserCrosswordProgress($userId);
-        $campusProgress = $this->getUserCampusProgress($userId);
-        $trivialTaskProgress = $this->getUserTrivialTaskProgress($userId);
-
-        return array_merge(
-            $userData,
-            $activityProgress,
-            $questProgress,
-            $crosswordProgress,
-            $campusProgress,
-            $trivialTaskProgress
-        );
+        $users = $this->sortUsersByPointAndCompletionDate($users);
+        return $this->assignRanksToUsers($users);
     }
-
-    public function getUserCrosswordProgress(string $userId)
+    
+    private function sortUsersByPointAndCompletionDate($users)
     {
-        $crosswordIds = Minigame::where('minigameable_type', Crossword::class)->pluck('id');
-
-        $completedCrosswords = MinigameAttempt::where('user_id', $userId)
-            ->whereIn('minigame_id', $crosswordIds) 
-            ->count();
-
-        $totalCrossword= $crosswordIds->count();
-
-        return [
-            'crosswordCompleted' => $completedCrosswords,
-            'totalCrossword' => $totalCrossword,
-        ];
+        return $users->sortBy(function ($user) {
+            return [
+                -$user->total_point, // Negative for descending order
+                is_null($user->completion_date) ? 1 : 0, // 0 for non-null, 1 for null
+            ];
+        })->values();
     }
-
-    public function getUserQuestProgress(string $userId)
+    
+    private function assignRanksToUsers($users)
     {
-        $completedQuest = QuestProgress::where('user_id', $userId)
-            ->where('is_completed', true)
-            ->count();
-
-        $totalQuest = Quest::count();
-
-        return [
-            'questCompleted' => $completedQuest,
-            'totalQuest' => $totalQuest,
-        ];
-    }
-
-    public function getUserActivityProgress(string $userId)
-    {
-        $userCompletedActivity = ActivityProgress::where('user_id', $userId)
-            ->where('is_completed', true)
-            ->count();
-
-        $totalActivity = Activity::count();
-
-        return [
-            'activityCompleted' => $userCompletedActivity,
-            'totalActivity' => $totalActivity,
-        ];
-    }
-
-    public function getUserCampusProgress(string $userId)
-    {
-        $userCompletedCampus = CampusProgress::where('user_id', $userId)
-            ->where('is_locked', false)
-            ->count();
-
-        $totalCampus = Campus::count();
-
-        return [
-            'campusUnlocked' => $userCompletedCampus,
-            'totalCampus' => $totalCampus,
-        ];
-    }
-
-    public function getUserTrivialTaskProgress(string $userId)
-    {
-        $trivialTaskIds = Activity::where('type', 'Trivial Task')
-            ->pluck('id');
-
-        $completedTrivialTask = ActivityProgress::where('user_id', $userId)
-            ->whereIn('activity_id', $trivialTaskIds)
-            ->where('is_completed', true)
-            ->count();
-
-        $totalTrivialTask = $trivialTaskIds->count();
-
-        return [
-            'trivialTaskCompleted' => $completedTrivialTask,
-            'totaltrivialTask' => $totalTrivialTask,
-        ];
+        $currentRank = 1;
+        $currentRankCount = 0;
+        $previousTotalPoint = null;
+        $previousCompletionDate = null;
+    
+        return $users->map(function ($user) use (
+            &$currentRank,
+            &$currentRankCount,
+            &$previousTotalPoint,
+            &$previousCompletionDate,
+        ) {
+            if (
+                $user->total_point !== $previousTotalPoint ||
+                $user->completion_date !== $previousCompletionDate
+            ) {
+                $currentRank += $currentRankCount; // Increment rank by group size
+                $currentRankCount = 1; // Reset group size
+            } else {
+                $currentRankCount++;
+            }
+    
+            $user->rank = $currentRank;
+    
+            $previousTotalPoint = $user->total_point;
+            $previousCompletionDate = $user->completion_date;
+    
+            return $user;
+        });
     }
 }

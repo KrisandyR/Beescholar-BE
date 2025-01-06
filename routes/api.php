@@ -36,6 +36,6 @@ Route::post('/process_scene/{sceneId}', [SceneController::class, 'processScene']
 Route::get('/user/{userId}', [UserController::class, 'getUser']);
 
 Route::prefix('leaderboard')->group(function () {
-    Route::get('stats/{userId}', [LeaderboardController::class, 'getPersonalStats']);
+    Route::get('stats/{userId}', [LeaderboardController::class, 'getUserProgress']);
     Route::get('{leaderboardType}/{userId}', [LeaderboardController::class, 'getLeaderboard']);
 });

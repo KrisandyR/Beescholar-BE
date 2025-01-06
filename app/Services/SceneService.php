@@ -56,6 +56,7 @@ class SceneService {
         $dialogue = Dialogue::findOrFail($sceneableId);
         $dialogue->options = $dialogue->dialogueOptions()->get();
         $dialogue->character_name = $dialogue->character()->first()->character_name;
+        $dialogue->character_image = $dialogue->character()->first()->character_image;
 
         return $dialogue;
     }

@@ -17,6 +17,7 @@ class Character extends Model
         'id',
         'campus_id', // Nullable
         'character_name',
+        'character_image',
         'roles',
         'description',
         'gender',

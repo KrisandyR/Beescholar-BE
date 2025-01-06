@@ -27,8 +27,9 @@ class QuizService
     
         foreach ($quiz->questions as $question) {
 
-            $character_name = Character::where('id', $question->character_id)->first()->character_name;
-            $question->character_name = $character_name;
+            $character = Character::where('id', $question->character_id)->first();
+            $question->character_name = $character->character_name;
+            $question->character_image =  $character->character_image;
 
             if ($question->type === QuizQuestion::TYPE_MULTIPLE_CHOICE || $question->type === QuizQuestion::TYPE_YES_NO) {
                 $question->choices = $question->choices();

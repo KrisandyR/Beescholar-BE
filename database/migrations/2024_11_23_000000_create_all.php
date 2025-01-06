@@ -73,6 +73,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('campus_id')->nullable();
             $table->string('character_name');
+            $table->string('character_image')->nullable();
             $table->json('roles');
             $table->string('description');
             $table->string('gender');

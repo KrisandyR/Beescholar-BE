@@ -21,6 +21,7 @@ class QuizQuestionResource extends JsonResource
             'questionType' => $this->question_type,
             'questionPoint' => $this->question_point,
             'characterName' => $this->character_name,
+            'characterImage' => $this->character_image,
             'choices' => $this->when($this->choices->isNotEmpty(),
                 QuizChoiceResource::collection($this->choices)),
             'steps' => $this->when($this->steps->isNotEmpty(),

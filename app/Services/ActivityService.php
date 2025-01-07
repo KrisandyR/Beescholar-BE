@@ -45,7 +45,7 @@ class ActivityService
             // Determine start_scene_id
             $activity->start_scene_id = $activityProgress && $activityProgress->last_scene_id
                 ? $activityProgress->last_scene_id
-                : $activity->firstScene->first()?->id;
+                : $activity->firstScene()->first()?->id;
     
             // Set is_completed from activityProgress if it exists
             $activity->is_completed = $activityProgress?->is_completed ?? false;

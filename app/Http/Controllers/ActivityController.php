@@ -30,7 +30,7 @@ class ActivityController extends Controller
                 return response()->json([
                     'success' => false,
                     'message' => 'No activities found for the specified room and user.',
-                ], 404);
+                ], 204);
             }
     
             // Transform and return data

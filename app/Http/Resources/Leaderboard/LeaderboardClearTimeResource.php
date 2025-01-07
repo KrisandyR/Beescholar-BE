@@ -19,7 +19,7 @@ class LeaderboardClearTimeResource extends JsonResource
             'name' => $this->name,
             'userCode' => $this->user_code,
             'profilePicture' => $this->profile_picture,
-            'completionDate' => $this->completion_date,
+            'completionDate' => optional($this->completion_date)->format('Y-m-d H:i') ?? 'Not completed yet',
             'rank' => $this->rank
         ];
     }

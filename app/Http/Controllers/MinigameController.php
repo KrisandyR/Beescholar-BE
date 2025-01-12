@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\DTOs\SubmitQuiz\SubmitQuizDTO;
 use App\Http\DTOs\SubmitCrossword\SubmitCrosswordDTO;
 use App\Http\DTOs\SubmitDrumPuzzle\SubmitDrumPuzzleDTO;
+use App\Http\Resources\SubmitMinigame\SubmitQuizResource;
 use App\Services\CrosswordService;
 use App\Services\DrumPuzzleService;
 use App\Services\MinigameService;
@@ -94,7 +95,17 @@ class MinigameController extends Controller
             $this->minigameService->setMinigameAttemptStatus($dto->minigameId, $userId, $totalPoint);
         }
     
-        return response()->json(['success' => true, 'message' => 'Minigame submitted successfully.']);
+        return response()->json([
+            'success' => true,
+            'message' => 'Minigame submitted successfully.',
+            'data' => new SubmitQuizResource(
+                (object) [
+                    'minigameId' => $dto->minigameId,
+                    'quizChoiceResults' => $quizChoiceResults,
+                    'quizStepsResults' => $quizStepsResults
+                ]
+            )
+        ]);
     }
     
     private function processChoiceAnswer($minigameAttemptId, $choiceAnswer, $hasAnswer, &$totalPoint)
@@ -108,8 +119,8 @@ class MinigameController extends Controller
             : $this->quizService->createQuizMultipleChoiceAnswer($minigameAttemptId, $choiceAnswer->questionId, $choiceAnswer->choiceId, $answerPoint, $isCorrect);
     
         return (object)[
-            'choiceAnswer' => $choiceAnswer,
-            'quizMultipleChoiceAnswer' => $quizMultipleChoiceAnswer,
+            'userChoiceAnswer' => $choiceAnswer,
+            'quizMinigameAnswer' => $quizMultipleChoiceAnswer,
         ];
     }
     
@@ -124,8 +135,8 @@ class MinigameController extends Controller
             : $this->quizService->createQuizOrderStepsAnswer($minigameAttemptId, $stepAnswer->questionId, $stepAnswer->stepIds, $answerPoint, $isCorrect);
     
         return (object)[
-            'stepAnswer' => $stepAnswer,
-            'quizOrderStepsAnswer' => $quizOrderStepsAnswer,
+            'userStepAnswer' => $stepAnswer,
+            'quizMinigameAnswer' => $quizOrderStepsAnswer,
         ];
     }
 

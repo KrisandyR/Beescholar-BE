@@ -132,7 +132,7 @@ class QuizService
         $minigameAnswer->answerable()->associate($quizMultipleChoiceAnswer);
         $minigameAnswer->save();
 
-        return [
+        return (object) [
             'minigameAnswer' => $minigameAnswer,
             'quizMultipleChoiceAnswer' => $quizMultipleChoiceAnswer
         ];
@@ -158,7 +158,7 @@ class QuizService
         $minigameAnswer->answer_point = $point;
         $minigameAnswer->save();
 
-        return [
+        return (object) [
             'minigameAnswer' => $minigameAnswer,
             'quizMultipleChoiceAnswer' => $quizMultipleChoiceAnswer
         ];
@@ -194,9 +194,9 @@ class QuizService
             $stepOrder += 1;
         }
 
-        return [
+        return (object) [
             'minigameAnswer' => $minigameAnswer,
-            'quizOrderStepsAAnswer' => $quizOrderStepsAnswer
+            'quizOrderStepsAnswer' => $quizOrderStepsAnswer
         ];
     }
 
@@ -233,7 +233,7 @@ class QuizService
         $minigameAnswer->answer_point = $point;
         $minigameAnswer->save();
 
-        return [
+        return (object) [
             'minigameAnswer' => $minigameAnswer,
             'quizOrderStepsAnswer' => $quizOrderStepsAnswer
         ];

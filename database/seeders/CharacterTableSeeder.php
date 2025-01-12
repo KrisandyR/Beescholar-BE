@@ -26,7 +26,7 @@ class CharacterTableSeeder extends Seeder
         $kemanggisan_characters = [
             [
                 'character_name' => 'Diyan',
-                'character_image' => 'https://avatar.iran.liara.run/public/12',
+                'character_image' => '/characters/Diyan.jpg',
                 'roles' => ['Teacher'],
                 'description' => 'Diyan, the seasoned teacher, wears tweed jackets and encourages curiosity in young minds.',
                 'gender' => 'M',
@@ -35,7 +35,7 @@ class CharacterTableSeeder extends Seeder
             ],
             [
                 'character_name' => 'Ehan',
-                'character_image' => 'https://avatar.iran.liara.run/public/29',
+                'character_image' => '/characters/Ehan.jpg',
                 'roles' => ['Student', 'Best Friend', 'Member of the Band Club', 'Guitarist'],
                 'description' => 'Ehan, the aspiring musician, wears faded band T-shirts and dreams of performing on a big stage.',
                 'gender' => 'M',
@@ -44,7 +44,7 @@ class CharacterTableSeeder extends Seeder
             ],
             [
                 'character_name' => 'Agatha',
-                'character_image' => 'https://avatar.iran.liara.run/public/61',
+                'character_image' => '/characters/Agatha.jpg',
                 'roles' => ['Student', 'Leader of the School’s News Club'],
                 'description' => 'Agatha, the news editor, wears oversized glasses and carries a notepad wherever she goes.',
                 'gender' => 'F',
@@ -53,7 +53,7 @@ class CharacterTableSeeder extends Seeder
             ],
             [
                 'character_name' => 'Agung',
-                'character_image' => 'https://avatar.iran.liara.run/public/44',
+                'character_image' => '/characters/Agung.jpg',
                 'roles' => ['Student', 'Class Leader'],
                 'description' => 'Agung, the class leader, balances authority with compassion, ensuring everyone’s voice is heard.',
                 'gender' => 'M',
@@ -62,7 +62,7 @@ class CharacterTableSeeder extends Seeder
             ],
             [
                 'character_name' => 'Rico',
-                'character_image' => 'https://avatar.iran.liara.run/public/4',
+                'character_image' => '/characters/Rico.jpg',
                 'roles' => ['Student', 'Member of the Band Club', 'Drummer'],
                 'description' => 'Rico, the heartbeat of the band, wears mismatched socks and dreams of touring the world.',
                 'gender' => 'M',
@@ -71,7 +71,7 @@ class CharacterTableSeeder extends Seeder
             ],
             [
                 'character_name' => 'Markus',
-                'character_image' => 'https://avatar.iran.liara.run/public/3',
+                'character_image' => '/characters/Markus.jpg',
                 'roles' => ['Student'],
                 'description' => 'Markus, the bookworm, seeks answers beyond the syllabus.',
                 'gender' => 'M',
@@ -80,7 +80,7 @@ class CharacterTableSeeder extends Seeder
             ],
             [
                 'character_name' => 'Ania',
-                'character_image' => 'https://avatar.iran.liara.run/public/92',
+                'character_image' => '/characters/Ania.jpg',
                 'roles' => ['Student', 'Twins with Enia'],
                 'description' => 'Ania, the poet, weaves verses about love and longing.',
                 'gender' => 'F',
@@ -89,7 +89,7 @@ class CharacterTableSeeder extends Seeder
             ],
             [
                 'character_name' => 'Enia',
-                'character_image' => 'https://avatar.iran.liara.run/public/84',
+                'character_image' => '/characters/Enia.jpg',
                 'roles' => ['Student', 'Twins with Ania'],
                 'description' => 'Enia, the stargazer, believes that every star has a story to tell.',
                 'gender' => 'F',
@@ -98,7 +98,7 @@ class CharacterTableSeeder extends Seeder
             ],
             [
                 'character_name' => 'Diana',
-                'character_image' => 'https://avatar.iran.liara.run/public/59',
+                'character_image' => '/characters/Diana.jpg',
                 'roles' => ['Student', 'Member of the Band Club', 'Singer'],
                 'description' => 'Diana, the lead vocalist, wears her heart on her sleeve and dreams of recording an album.',
                 'gender' => 'F',
@@ -110,7 +110,7 @@ class CharacterTableSeeder extends Seeder
         $as_characters = [
             [
                 'character_name' => 'Adhi',
-                'character_image' => 'https://avatar.iran.liara.run/public/45',
+                'character_image' => '/characters/Adhi.jpg',
                 'roles' => ['Beescholar’s Late President', 'Strict but Friendly'],
                 'description' => 'Adhi, the former Beescholar president, balanced responsibilities with a warm smile.',
                 'gender' => 'M',
@@ -119,7 +119,7 @@ class CharacterTableSeeder extends Seeder
             ],
             [
                 'character_name' => 'Tifa',
-                'character_image' => 'https://avatar.iran.liara.run/public/78',
+                'character_image' => '/characters/Tifa.jpg',
                 'roles' => ['Beescholar’s Late Vice President'],
                 'description' => 'Tifa, the former Beescholar VP, believed in unity and consensus.',
                 'gender' => 'F',
@@ -128,7 +128,7 @@ class CharacterTableSeeder extends Seeder
             ],
             [
                 'character_name' => 'Rektor',
-                'character_image' => 'https://avatar.iran.liara.run/public/14',
+                'character_image' => '/characters/Rektor.jpg',
                 'roles' => ['Headmaster'],
                 'description' => 'Rektor, the stern but respected headmaster, ensured discipline and upheld the institution’s legacy.',
                 'gender' => 'M',
@@ -166,7 +166,7 @@ class CharacterTableSeeder extends Seeder
         Character::create([
             'campus_id' => null,
             'character_name' => '[MC]',
-            'character_image' => null,
+            'character_image' => '/characters/MC.jpg',
             'roles' => ['The New Beescholar Member'],
             'description' => '[MC], the newest member of Beescholar, is eager to prove their worth and discover their role in the campus community.',
             'gender' => '-',

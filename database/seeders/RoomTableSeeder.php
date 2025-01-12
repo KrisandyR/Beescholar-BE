@@ -28,7 +28,7 @@ class RoomTableSeeder extends Seeder
                     'campus_id' => $campus->id,
                     'room_name' => 'Class Room',
                     'type' => "Interactible",
-                    'background' => 'dummy-classroom.jpeg',
+                    'background' => '/backgrounds/Classroom.png',
                     'created_by' => 'RoomTableSeeder',
                     'updated_by' => null,
                 ]);
@@ -36,7 +36,7 @@ class RoomTableSeeder extends Seeder
                 Room::create([
                     'campus_id' => $campus->id,
                     'room_name' => 'Band Room',
-                    'background' => 'band_room_empty.png',
+                    'background' => '/backgrounds/Band-Room.png',
                     'type' => "Interactible",
                     'created_by' => 'RoomTableSeeder',
                     'updated_by' => null,
@@ -45,7 +45,7 @@ class RoomTableSeeder extends Seeder
                 Room::create([
                     'campus_id' => $campus->id,
                     'room_name' => 'Teacher Office',
-                    'background' => 'dummy-classroom.jpeg',
+                    'background' => '/backgrounds/Teacher-Office.png',
                     'type' => "Interactible",
                     'created_by' => 'RoomTableSeeder',
                     'updated_by' => null,
@@ -54,7 +54,7 @@ class RoomTableSeeder extends Seeder
                 Room::create([
                     'campus_id' => $campus->id,
                     'room_name' => 'Hallway',
-                    'background' => 'dummy-classroom.jpeg',
+                    'background' => '/backgrounds/Hallway.png',
                     'type' => "Interactible",
                     'created_by' => 'RoomTableSeeder',
                     'updated_by' => null,
@@ -65,7 +65,7 @@ class RoomTableSeeder extends Seeder
                 Room::create([
                     'campus_id' => $campus->id,
                     'room_name' => 'Class Room',
-                    'background' => 'dummy-classroom.jpeg',
+                    'background' => '/backgrounds/Classroom.png',
                     'type' => "Interactible",
                     'created_by' => 'RoomTableSeeder',
                     'updated_by' => null,
@@ -74,7 +74,7 @@ class RoomTableSeeder extends Seeder
                 Room::create([
                     'campus_id' => $campus->id,
                     'room_name' => 'Hallway',
-                    'background' => 'dummy-classroom.jpeg',
+                    'background' => '/backgrounds/Hallway.png',
                     'type' => "Interactible",
                     'created_by' => 'RoomTableSeeder',
                     'updated_by' => null,
@@ -83,7 +83,7 @@ class RoomTableSeeder extends Seeder
                 Room::create([
                     'campus_id' => $campus->id,
                     'room_name' => 'Campus Field',
-                    'background' => 'dummy-classroom.jpeg',
+                    'background' => '/backgrounds/Campus-Field.png',
                     'type' => "Interactible",
                     'created_by' => 'RoomTableSeeder',
                     'updated_by' => null,
@@ -92,7 +92,7 @@ class RoomTableSeeder extends Seeder
                 Room::create([
                     'campus_id' => $campus->id,
                     'room_name' => 'Multimedia Room',
-                    'background' => 'dummy-classroom.jpeg',
+                    'background' => '/backgrounds/Multimedia-Room.pmg',
                     'type' => "Interactible",
                     'created_by' => 'RoomTableSeeder',
                     'updated_by' => null,

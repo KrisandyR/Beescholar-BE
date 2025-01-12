@@ -103,6 +103,10 @@ class MinigameService
         $minigameAttempt->addPoint($point);
     }
 
+    public function getMinigameMaximumPoint($minigameId){
+        return Minigame::findOrFail($minigameId)->maximum_point_reward;
+    }
+
     public function hasAnswers($minigameAttemptId) {
         $listMinigameAnswers = MinigameAnswer::where('minigame_attempt_id', $minigameAttemptId)->get();
         return !$listMinigameAnswers->isEmpty();

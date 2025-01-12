@@ -121,10 +121,6 @@ class QuizService
             ]
         );
 
-        dump($choiceId);
-        dump($isCorrect);
-        dump($questionId);
-
         $quizMultipleChoiceAnswer = QuizMultipleChoiceAnswer::create(
             [
                 'answer_choice_id' => $choiceId,
@@ -143,7 +139,6 @@ class QuizService
     }
 
     public function updateQuizMultipleChoiceAnswer(string $minigameAttemptId, $questionId, $choiceId, $point, $isCorrect){
-        dump('updating');
         $listMinigameAnswers = MinigameAnswer::where('minigame_attempt_id', $minigameAttemptId)->get();
 
         $answerableType = config('minigame_answer_types')['Quiz Multiple Choice Answer'];

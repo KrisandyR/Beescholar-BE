@@ -216,7 +216,64 @@ class MinigameController extends Controller
 
     public function submitCrossword(Request $request)
     {
-        
+        $dto = new SubmitCrosswordDTO($request);
+        $userId = config('constants.default_user_id');
+
+        if(!$this->minigameService->findMinigame($dto->minigameId)){
+            return response()->json(['success' => false, 'message' => 'Minigame not found']);
+        }
+
+        $minigameAttempt = $this->minigameService->findMinigameAttempt($dto->minigameId, $userId);
+        $isCompleted = $minigameAttempt !== null;
+
+        if(!$minigameAttempt){
+            $minigameAttempt = $this->minigameService->createMinigameAttempt($dto->minigameId, $userId);
+        }
+
+        $crosswordResults = new Collection();
+        $hasAnswer = $this->minigameService->hasAnswers($minigameAttempt->id);
+
+        foreach($dto->wordAnswers as $wordAnswer){
+            $isCorrect = $this->crosswordService->validateCrosswordAnswer($wordAnswer->wordId, $wordAnswer->answerText);
+
+            if(!$isCorrect){
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Incorrect answer for Crossword',
+                    'data' => (object) [
+                        'incorrectWordId' => $wordAnswer->wordId,
+                        'incorrectAnswerText' => $wordAnswer->answerText
+                    ]
+                ]);
+            }
+        }
+
+        foreach($dto->wordAnswers as $wordAnswer){
+            $crosswordResult = $hasAnswer
+                ? $this->crosswordService->updateCrosswordAnswer($minigameAttempt->id, $wordAnswer->wordId, $wordAnswer->answerText, 0)
+                : $this->crosswordService->createCrosswordAnswer($minigameAttempt->id, $wordAnswer->wordId, $wordAnswer->answerText, 0);
+
+            $crosswordResults->push((object) $crosswordResult);
+        }
+
+        $totalPoint = $this->minigameService->getMinigameMaximumPoint($dto->minigameId);
+
+        if (!$isCompleted || $minigameAttempt->total_point != $totalPoint) {
+            $minigameAttempt->total_point = $totalPoint;
+            $minigameAttempt->save();
+    
+            $this->pointService->getPointFromMinigame($userId, $minigameAttempt);
+            $this->minigameService->setMinigameAttemptStatus($dto->minigameId, $userId, $totalPoint);
+        }
+    
+        return response()->json([
+            'success' => true,
+            'message' => 'Minigame submitted successfully.'
+        ]);
+    }
+
+    private function processCrosswordAnswer(){
+
     }
 
     public function submitFollowTheDrum()

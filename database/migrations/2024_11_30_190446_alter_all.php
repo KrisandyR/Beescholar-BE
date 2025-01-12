@@ -148,16 +148,18 @@ return new class extends Migration
         });
 
         Schema::table('quiz_multiple_choice_answers', function (Blueprint $table) {
-            $table->foreign('answer_option_id')->references('id')
+            $table->foreign('answer_choice_id')->references('id')
                 ->on('quiz_choices')->onDelete('cascade');
+            $table->foreign('question_id')->references('id')
+                ->on('quiz_questions')->onDelete('cascade');
             // $table->foreign('id')->references('id')
             //     ->on('minigame_answers')->onDelete('cascade');
         });
 
-        // Schema::table('quiz_order_steps_answers', function (Blueprint $table) {
-        //     $table->foreign('id')->references('id')
-        //         ->on('minigame_answers')->onDelete('cascade');
-        // });
+        Schema::table('quiz_order_steps_answers', function (Blueprint $table) {
+            $table->foreign('question_id')->references('id')
+                ->on('quiz_questions')->onDelete('cascade');
+        });
 
         Schema::table('quiz_order_steps_answer_details', function (Blueprint $table) {
             $table->foreign('answer_step_id')->references('id')

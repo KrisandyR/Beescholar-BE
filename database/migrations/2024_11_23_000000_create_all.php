@@ -282,7 +282,8 @@ return new class extends Migration
             $table->integer('answer_point')->default(0);
             $table->string('status');
             $table->uuid('minigame_attempt_id');
-            $table->nullableMorphs('answerable');
+            $table->uuid('sceneable_id')->nullable();
+            $table->string('sceneable_type')->nullable();
             $table->timestamps();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
@@ -290,7 +291,8 @@ return new class extends Migration
 
         Schema::create('quiz_multiple_choice_answers', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('answer_option_id');
+            $table->uuid('question_id');
+            $table->uuid('answer_choice_id');
             $table->boolean('is_correct')->default(false);
             $table->timestamps();
             $table->string('created_by')->nullable();
@@ -299,6 +301,7 @@ return new class extends Migration
 
         Schema::create('quiz_order_steps_answers', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('question_id');
             $table->boolean('is_correct')->default(false);
             $table->timestamps();
             $table->string('created_by')->nullable();

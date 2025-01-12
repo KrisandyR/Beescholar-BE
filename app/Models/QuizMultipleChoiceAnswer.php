@@ -15,8 +15,9 @@ class QuizMultipleChoiceAnswer extends Model
 
     protected $fillable = [
         'id',
-        'answer_option_id',
-        'is_correct' // default false
+        'answer_choice_id',
+        'is_correct', // default false
+        'question_id'
     ];
 
     protected $casts = [
@@ -30,6 +31,6 @@ class QuizMultipleChoiceAnswer extends Model
 
     public function choice()
     {
-        return $this->belongsTo(QuizChoice::class, 'answer_option_id', 'id');
+        return $this->belongsTo(QuizChoice::class, 'answer_choice_id', 'id');
     }
 }

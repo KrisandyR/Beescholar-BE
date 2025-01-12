@@ -15,7 +15,8 @@ class QuizOrderStepsAnswer extends Model
 
     protected $fillable = [
         'id',
-        'is_correct' // default false
+        'is_correct', // default false
+        'question_id'
     ];
 
     protected $casts = [

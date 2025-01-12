@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\DTOs;
+namespace App\Http\DTOs\SubmitQuiz;
 
-class ChoiceAnswerDTO
+class StepAnswerDTO
 {
     public string $questionId;
-    public string $choiceId;
     public int $questionOrder;
+    public array $stepIds;
 
     public function __construct(array $data)
     {
         $this->questionId = $data['questionId'];
-        $this->choiceId = $data['choiceId'];
         $this->questionOrder = $data['questionOrder'];
+        $this->stepIds = $data['stepIds'];
     }
 }

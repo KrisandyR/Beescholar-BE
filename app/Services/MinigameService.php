@@ -85,17 +85,16 @@ class MinigameService
         ]);
     }
 
-    public function setMinigameAttemptStatus($minigameId, $userId, $attemptPoint){
-        $minigameMinimumPoint = Minigame::findOrFail($minigameId)->minimum_passing_point;
-        MinigameAttempt::update(
-            [
-                'minigame_id' => $minigameId,
-                'user_id' => $userId,
-            ],
-            [
-                'status' => $attemptPoint >= $minigameMinimumPoint ? 'Completed' : 'Failed'
-            ]
-        );
+    public function setMinigameAttemptStatus($minigameId, $userId, $attemptPoint)
+    {
+        // Retrieve the minimum passing point for the given minigame
+        $minigame = Minigame::findOrFail($minigameId);
+        $status = $attemptPoint >= $minigame->minimum_passing_point ? 'Completed' : 'Failed';
+    
+        // Update the status for the specific user's minigame attempt
+        MinigameAttempt::where('minigame_id', $minigameId)
+            ->where('user_id', $userId)
+            ->update(['status' => $status]);
     }
 
     public function addPointToMinigameAttempt($minigameAttemptId, $point)

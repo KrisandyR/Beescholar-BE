@@ -244,8 +244,4 @@ class QuizService
         ];
     }
 
-    public function hasAnswers($minigameAttemptId) {
-        $listMinigameAnswers = MinigameAnswer::where('minigame_attempt_id', $minigameAttemptId)->get();
-        return !$listMinigameAnswers->isEmpty();
-    }
 }

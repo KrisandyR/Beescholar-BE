@@ -36,6 +36,7 @@ Route::post('/process_scene/{sceneId}', [SceneController::class, 'processScene']
 Route::get('/user/{userId}', [UserController::class, 'getUser']);
 Route::post('/submit/quiz', [MinigameController::class, 'submitQuiz']);
 Route::post('/submit/crossword', [MinigameController::class, 'submitCrossword']);
+Route::post('/submit/drum_puzzle', [MinigameController::class, 'submitDrumPuzzle']);
 
 Route::prefix('leaderboard')->group(function () {
     Route::get('stats/{userId}', [LeaderboardController::class, 'getUserProgress']);

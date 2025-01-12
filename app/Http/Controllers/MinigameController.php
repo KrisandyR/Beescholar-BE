@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\DTOs\SubmitQuiz\SubmitQuizDTO;
 use App\Http\DTOs\SubmitCrossword\SubmitCrosswordDTO;
+use App\Http\DTOs\SubmitDrumPuzzle\SubmitDrumPuzzleDTO;
 use App\Services\CrosswordService;
+use App\Services\DrumPuzzleService;
 use App\Services\MinigameService;
 use App\Services\PointService;
 use App\Services\QuizService;
@@ -19,13 +21,15 @@ class MinigameController extends Controller
     protected $quizService;
     protected $pointService;
     protected $crosswordService;
+    protected $drumPuzzleService;
 
-    public function __construct(MinigameService $minigameService, QuizService $quizService, PointService $pointService, CrosswordService $crosswordService)
+    public function __construct(MinigameService $minigameService, QuizService $quizService, PointService $pointService, CrosswordService $crosswordService, DrumPuzzleService $drumPuzzleService)
     {
         $this->minigameService = $minigameService;
         $this->quizService = $quizService;
         $this->crosswordService = $crosswordService;
         $this->pointService = $pointService;
+        $this->drumPuzzleService = $drumPuzzleService;
     }
     public function getMinigame(string $minigameId)
     {
@@ -272,12 +276,39 @@ class MinigameController extends Controller
         ]);
     }
 
-    private function processCrosswordAnswer(){
-
-    }
-
-    public function submitFollowTheDrum()
+    public function submitDrumPuzzle(Request $request)
     {
+        $dto = new SubmitDrumPuzzleDTO($request);
+        $userId = config('constants.default_user_id');
 
+        if(!$this->minigameService->findMinigame($dto->minigameId)){
+            return response()->json(['success' => false, 'message' => 'Minigame not found']);
+        }
+
+        $minigameAttempt = $this->minigameService->findMinigameAttempt($dto->minigameId, $userId);
+        $isCompleted = $minigameAttempt !== null;
+
+        if(!$minigameAttempt){
+            $minigameAttempt = $this->minigameService->createMinigameAttempt($dto->minigameId, $userId);
+        }
+
+        $hasAnswer = $this->minigameService->hasAnswers($minigameAttempt->id);
+
+        $drumPuzzleResult = $hasAnswer
+            ? $this->drumPuzzleService->updateDrumPuzzleAnswer($minigameAttempt->id, $dto->point, $dto->patternAnswer)
+            : $this->drumPuzzleService->createDrumPuzzleAnswer($minigameAttempt->id, $dto->point, $dto->patternAnswer);
+
+        if (!$isCompleted || $minigameAttempt->total_point != $dto->point) {
+            $minigameAttempt->total_point = $dto->point;
+            $minigameAttempt->save();
+    
+            $this->pointService->getPointFromMinigame($userId, $minigameAttempt);
+            $this->minigameService->setMinigameAttemptStatus($dto->minigameId, $userId, $dto->point);
+        }
+    
+        return response()->json([
+            'success' => true,
+            'message' => 'Minigame submitted successfully.'
+        ]);
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Resources\Minigame\QuizResource;
 use App\Models\Crossword;
 use App\Models\DrumPuzzle;
 use App\Models\Minigame;
+use App\Models\MinigameAnswer;
 use App\Models\MinigameAttempt;
 use App\Models\Quiz;
 use App\Models\User;
@@ -78,16 +79,34 @@ class MinigameService
     public function createMinigameAttempt($minigameId, $userId)
     {
         return MinigameAttempt::create([
-            'status' => 'Completed',
+            'status' => 'New',
             'minigame_id' => $minigameId,
             'user_id' => $userId,
         ]);
+    }
+
+    public function setMinigameAttemptStatus($minigameId, $userId, $attemptPoint){
+        $minigameMinimumPoint = Minigame::findOrFail($minigameId)->minimum_passing_point;
+        MinigameAttempt::update(
+            [
+                'minigame_id' => $minigameId,
+                'user_id' => $userId,
+            ],
+            [
+                'status' => $attemptPoint >= $minigameMinimumPoint ? 'Completed' : 'Failed'
+            ]
+        );
     }
 
     public function addPointToMinigameAttempt($minigameAttemptId, $point)
     {
         $minigameAttempt = MinigameAttempt::findOrFail($minigameAttemptId);
         $minigameAttempt->addPoint($point);
+    }
+
+    public function hasAnswers($minigameAttemptId) {
+        $listMinigameAnswers = MinigameAnswer::where('minigame_attempt_id', $minigameAttemptId)->get();
+        return !$listMinigameAnswers->isEmpty();
     }
 
 }

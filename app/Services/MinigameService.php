@@ -8,6 +8,7 @@ use App\Http\Resources\Minigame\QuizResource;
 use App\Models\Crossword;
 use App\Models\DrumPuzzle;
 use App\Models\Minigame;
+use App\Models\MinigameAttempt;
 use App\Models\Quiz;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
@@ -67,4 +68,26 @@ class MinigameService
 
         return $combinedData;
     }
+
+    public function findMinigameAttempt(string $minigameId, string $userId)
+    {
+        return MinigameAttempt::where('minigame_id', $minigameId)->
+            where('user_id', $userId)->first();
+    }
+
+    public function createMinigameAttempt($minigameId, $userId)
+    {
+        return MinigameAttempt::create([
+            'status' => 'Completed',
+            'minigame_id' => $minigameId,
+            'user_id' => $userId,
+        ]);
+    }
+
+    public function addPointToMinigameAttempt($minigameAttemptId, $point)
+    {
+        $minigameAttempt = MinigameAttempt::findOrFail($minigameAttemptId);
+        $minigameAttempt->addPoint($point);
+    }
+
 }

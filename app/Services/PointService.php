@@ -56,4 +56,33 @@ class PointService
 
         $this->userService->updateUserTotalPoint($userId, $pointProgress->point_gained);
     }
+
+    public function getPointFromMinigame(string $userId, $minigameAttempt){
+
+        $userPointProgress = UserPointProgress::where('user_id', $userId)
+            ->where('minigame_attempt_id', $minigameAttempt->id)->first();
+
+        if ($userPointProgress) {
+            $pointGained = $minigameAttempt->total_point - $userPointProgress->point_gained;
+            // Update the existing record
+            $userPointProgress->update([
+                'status' => 'Completed',
+                'point_gained' => $minigameAttempt->total_point,
+                'point_source' => 'Minigame',
+            ]);
+        } else {
+            // Create a new record
+            $pointGained = $minigameAttempt->total_point;
+            UserPointProgress::create([
+                'user_id' => $userId,
+                'minigame_attempt_id' => $minigameAttempt->id,
+                'status' => 'Completed',
+                'point_gained' => $minigameAttempt->total_point,
+                'point_source' => 'Minigame',
+            ]);
+            
+        }
+
+        $this->userService->updateUserTotalPoint($userId, $pointGained);
+    }
 }

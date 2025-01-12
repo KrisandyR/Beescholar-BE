@@ -46,4 +46,9 @@ class MinigameAttempt extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function addPoint($point)
+    {
+        return $this->increment('total_point', $point);
+    }
 }

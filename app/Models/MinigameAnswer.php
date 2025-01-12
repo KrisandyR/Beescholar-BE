@@ -31,7 +31,13 @@ class MinigameAnswer extends Model
         return $this->belongsTo(MinigameAttempt::class, 'minigame_attempt_id', 'id');
     }
 
-    public function answerable(){
+    public function answerable()
+    {
         return $this->morphTo();
+    }
+
+    public function addPoint($point)
+    {
+        return $this->increment('answer_point', $point);
     }
 }

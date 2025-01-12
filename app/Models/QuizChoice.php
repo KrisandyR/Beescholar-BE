@@ -33,6 +33,6 @@ class QuizChoice extends Model
 
     public function quizMultipleChoiceAnswer()
     {
-        return $this->hasMany(QuizMultipleChoiceAnswer::class, 'answer_option_id', 'id');
+        return $this->hasMany(QuizMultipleChoiceAnswer::class, 'answer_choice_id', 'id');
     }
 }

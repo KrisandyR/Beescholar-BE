@@ -282,8 +282,8 @@ return new class extends Migration
             $table->integer('answer_point')->default(0);
             $table->string('status');
             $table->uuid('minigame_attempt_id');
-            $table->uuid('sceneable_id')->nullable();
-            $table->string('sceneable_type')->nullable();
+            $table->uuid('answerable_id')->nullable();
+            $table->string('answerable_type')->nullable();
             $table->timestamps();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

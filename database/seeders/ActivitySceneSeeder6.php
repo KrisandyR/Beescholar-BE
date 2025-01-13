@@ -41,7 +41,7 @@ class ActivitySceneSeeder6 extends Seeder
         $scene1 = $this->createScene($activityId);
         $event1 = Event::create([
             'event_name' => 'Crossword Tutorial',
-            'event_type' => 'Tutorial',
+            'event_type' => 'Trivial Task',
             'created_by' => 'SceneDialogueSeeder',
             'updated_by' => null,
         ]);

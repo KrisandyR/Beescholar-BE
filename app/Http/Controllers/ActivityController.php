@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ActivityResource;
 use App\Http\Resources\QuestActivityResource;
 use App\Models\Activity;
 use App\Models\Quest;
@@ -24,9 +25,11 @@ class ActivityController extends Controller
 
             // Use service to get quests with activities
             $questWithActivities = $this->activityService->getQuestsWithActivities($roomId, $userId);
+
+            $nonQuestActivities = $this->activityService->getNonQuestActivities($roomId, $userId);
     
             // Handle empty results
-            if ($questWithActivities->isEmpty()) {
+            if ($questWithActivities->isEmpty() && $nonQuestActivities->isEmpty()) {
                 return response()->json([
                     'success' => false,
                     'message' => 'No activities found for the specified room and user.',
@@ -36,7 +39,10 @@ class ActivityController extends Controller
             // Transform and return data
             return response()->json([
                 'success' => true,
-                'data' => QuestActivityResource::collection($questWithActivities),
+                'data' => (object) [
+                    'questActivities' => QuestActivityResource::collection($questWithActivities),
+                    'nonQuestActivites' => ActivityResource::collection($nonQuestActivities)
+                ]
             ]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400); // Bad Request

@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             ActivitySceneSeeder4::class, // Drum Puzzle
             ActivitySceneSeeder5::class, // Stage
             ActivitySceneSeeder6::class, // Crossword
+            ActivitySceneSeeder7::class, // Interactt NPC
         ]);
     }
 }

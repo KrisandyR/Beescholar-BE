@@ -195,13 +195,27 @@ class QuestActivityTableSeeder extends Seeder
 
         $activity6 = Activity::create([
             'activity_name' => 'Try Crossword',
-            'type' => 'Crossword',
+            'type' => 'Trivial Task',
             'description' => 'Extra homework you can do',
             'is_repeatable' => false,
             'completion_point' => 100,
             'priority' => 1,
             'quest_id' => null,
-            'room_id' => null,
+            'room_id' => $hallway_id,
+            'unlock_activity_id' => null,
+            'created_by' => 'QuestActivityTableSeeder',
+            'updated_by' => null,
+        ]);
+
+        $activity7 = Activity::create([
+            'activity_name' => 'Wise Words',
+            'type' => 'Trivial Task',
+            'description' => 'Diyan wants to talk to you',
+            'is_repeatable' => false,
+            'completion_point' => 50,
+            'priority' => 1,
+            'quest_id' => null,
+            'room_id' => $teacher_office_id,
             'unlock_activity_id' => null,
             'created_by' => 'QuestActivityTableSeeder',
             'updated_by' => null,
@@ -225,6 +239,10 @@ class QuestActivityTableSeeder extends Seeder
 
         $activity5->update([
             'unlock_activity_id' => $activity6->id
+        ]);
+
+        $activity6->update([
+            'unlock_activity_id' => $activity7->id
         ]);
 
         return $activity1->id;

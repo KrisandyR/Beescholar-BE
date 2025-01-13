@@ -29,6 +29,7 @@ class ActivityService
                 }
             ])
             ->where('room_id', $roomId)
+            ->whereNotNull('quest_id')
             ->whereHas('activityProgress', function ($query) use ($userId) {
                 $query->where('user_id', $userId);
             })
@@ -70,6 +71,45 @@ class ActivityService
         return $questWithActivities;
     }
 
+    public function getNonQuestActivities($roomId, $userId){
+        $activities = Activity::with([
+                'activityProgress' => function ($query) use ($userId) {
+                    $query->where('user_id', $userId);
+                },
+                'firstScene' => function ($query) {
+                    $query->where('is_start_scene', true);
+                }
+            ])
+            ->where('room_id', $roomId)
+            ->where('quest_id', null)
+            ->whereHas('activityProgress', function ($query) use ($userId) {
+                $query->where('user_id', $userId);
+            })
+            ->get();
+
+        if ($activities->isEmpty()) {
+            return new Collection(); // Return empty collection for error handling in controller
+        }
+
+        // Add dynamic fields to activities
+        $activities->transform(function ($activity) {
+            $activityProgress = $activity->activityProgress->first();
+
+            // Determine start_scene_id
+            $activity->start_scene_id = $activityProgress && $activityProgress->last_scene_id
+                ? $activityProgress->last_scene_id
+                : $activity->firstScene()->first()?->id;
+
+            // Set is_completed from activityProgress if it exists
+            $activity->is_completed = $activityProgress?->is_completed ?? false;
+
+            return $activity;
+        });
+
+        return $activities;
+
+    }
+
     public function progressUserActivity(string $userId, $scene)
     {
         // Retrieve the existing progress for the user and activity
@@ -89,14 +129,22 @@ class ActivityService
         if ($progress) {
             $completionPerformed = !$progress->is_completed && $scene->is_end_scene;
             // Determine values based on existing progress and scene type
-            $additionalValues = $completionPerformed
-                ? [
+            $additionalValues = [];
+
+            if(!$progress->is_completed && $scene->is_end_scene){
+                $additionalValues = [
                     'status' => 'Completed',
                     'last_scene_id' => null,
                     'is_completed' => true,
                     'completion_date' => now(),
-                ]
-                : [];
+                ];
+            } elseif ($scene->is_end_scene) {
+                $additionalValues = [
+                    'last_scene_id' => null,
+                ];
+            } else {
+                $additionalValues = [];
+            }
                 
             // Merge common values with specific updates
             $values = array_merge($commonValues, $additionalValues);

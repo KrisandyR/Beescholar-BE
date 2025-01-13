@@ -222,6 +222,8 @@ class ActivitySceneSeeder5 extends Seeder
         $scene9->update(['next_scene_id' => $scene10->id]);
         $scene10->update(['next_scene_id' => $scene11->id]);
         $scene11->update(['next_scene_id' => $scene12->id]);
+        $scene12->update(['next_scene_id' => $scene13->id]);
+        $scene13->update(['next_scene_id' => $scene14->id]);
         $scene14->update(['next_scene_id' => $scene15->id]);
         $scene15->update(['next_scene_id' => $scene16->id]);
         $scene16->update(['next_scene_id' => $scene17->id]);

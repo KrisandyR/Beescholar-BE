@@ -37,6 +37,7 @@ class SubmitQuizResource extends JsonResource
             - $totalCorrect;
 
         return [
+            'status' => $this->status,
             'minigameId' => $this->minigameId,
             'totalCorrect' => $totalCorrect,
             'totalIncorrect' => $totalIncorrect,

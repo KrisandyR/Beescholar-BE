@@ -92,7 +92,7 @@ class MinigameService
         $status = $attemptPoint >= $minigame->minimum_passing_point ? 'Completed' : 'Failed';
     
         // Update the status for the specific user's minigame attempt
-        MinigameAttempt::where('minigame_id', $minigameId)
+        return MinigameAttempt::where('minigame_id', $minigameId)
             ->where('user_id', $userId)
             ->update(['status' => $status]);
     }

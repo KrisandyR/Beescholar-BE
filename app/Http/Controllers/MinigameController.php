@@ -92,7 +92,7 @@ class MinigameController extends Controller
             $minigameAttempt->save();
     
             $this->pointService->getPointFromMinigame($userId, $minigameAttempt);
-            $this->minigameService->setMinigameAttemptStatus($dto->minigameId, $userId, $totalPoint);
+            $minigameAttempt = $this->minigameService->setMinigameAttemptStatus($dto->minigameId, $userId, $totalPoint);
         }
     
         return response()->json([
@@ -100,6 +100,7 @@ class MinigameController extends Controller
             'message' => 'Minigame submitted successfully.',
             'data' => new SubmitQuizResource(
                 (object) [
+                    'status' => $minigameAttempt->status,
                     'minigameId' => $dto->minigameId,
                     'quizChoiceResults' => $quizChoiceResults,
                     'quizStepsResults' => $quizStepsResults

@@ -242,7 +242,7 @@ class ActivitySceneSeeder5 extends Seeder
         ]);
 
         $quiz = Quiz::create([
-            'quiz_type' => 'Exam Preparation',
+            'quiz_type' => 'Stage',
             'quiz_topic' => 'Exam.',
             'hint' => 'Refer to BINUSMAYA guidelines and student policies.',
             'created_by' => 'SceneDialogueSeeder',

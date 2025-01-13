@@ -46,7 +46,7 @@ class ActivitySceneSeeder2 extends Seeder
         $mcCharacterId = Character::where('character_name', '[MC]')->first()->id;
 
         // 1
-        $scene1 = $this->createScene($activityId, 'hallway.jpg', true, false);
+        $scene1 = $this->createScene($activityId, '/backgrounds/Hallway.png', true, false);
         $dialogue1 = $this->createDialogue('Ah, you must be the new Beescholar everyone is talking about! Nice to meet you. I’m Agung, the class leader.',
             $agungCharacterId);
 
@@ -54,7 +54,7 @@ class ActivitySceneSeeder2 extends Seeder
         $scene1->save();
 
         // 2
-        $scene2 = $this->createScene($activityId, 'hallway.jpg');
+        $scene2 = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $dialogue2 = $this->createDialogue('Nice to meet you, Agung. And you are…?',
             $mcCharacterId);
 
@@ -62,7 +62,7 @@ class ActivitySceneSeeder2 extends Seeder
         $scene2->save();
 
         // 3
-        $scene3 = $this->createScene($activityId, 'hallway.jpg');
+        $scene3 = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $dialogue3 = $this->createDialogue('I’m Agatha, leader of the News Club. I couldn’t resist meeting the latest Beescholar candidate. How did Diyan recommend you, if you don’t mind me asking?',
             $agathaCharacterId);
 
@@ -70,7 +70,7 @@ class ActivitySceneSeeder2 extends Seeder
         $scene3->save();
 
         // 4
-        $scene4 = $this->createScene($activityId, 'hallway.jpg');
+        $scene4 = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $dialogue4 = $this->createDialogue('Oh, he mentioned something about my determination and potential. It was a bit overwhelming, to be honest.',
             $mcCharacterId);
 
@@ -78,7 +78,7 @@ class ActivitySceneSeeder2 extends Seeder
         $scene4->save();
 
         // 5
-        $scene5 = $this->createScene($activityId, 'hallway.jpg');
+        $scene5 = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $dialogue5 = $this->createDialogue('Interesting! You must have made quite an impression. Mind sharing more about your story? It could make an excellent feature in our school’s news board!',
             $agathaCharacterId);
 
@@ -86,7 +86,7 @@ class ActivitySceneSeeder2 extends Seeder
         $scene5->save();
 
         // 6
-        $scene6 = $this->createScene($activityId, 'hallway.jpg');
+        $scene6 = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $dialogue6 = $this->createDialogue('Agatha, remember the club rules? The News Club has to stay neutral toward all Beescholar candidates.',
             $agungCharacterId);
 
@@ -94,7 +94,7 @@ class ActivitySceneSeeder2 extends Seeder
         $scene6->save();
 
         // 7
-        $scene7 = $this->createScene($activityId, 'hallway.jpg');
+        $scene7 = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $dialogue7 = $this->createDialogue('Ah, you’re right. As much as I’d love to write about you, rules are rules. But that doesn’t mean we can’t be curious. So, how are you finding the campus so far?',
             $agathaCharacterId);
 
@@ -102,7 +102,7 @@ class ActivitySceneSeeder2 extends Seeder
         $scene7->save();
 
         // 8
-        $scene8 = $this->createScene($activityId, 'hallway.jpg');
+        $scene8 = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $dialogue8 = $this->createDialogue('It’s been exciting but a bit overwhelming. There’s so much to learn.',
             $mcCharacterId);
 
@@ -110,7 +110,7 @@ class ActivitySceneSeeder2 extends Seeder
         $scene8->save();
 
         // 9
-        $scene9 = $this->createScene($activityId, 'hallway.jpg');
+        $scene9 = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $dialogue9 = $this->createDialogue('That’s understandable. Adjusting takes time. If you need help, we’re here for you. In fact, maybe you can help us too.',
             $agungCharacterId);
 
@@ -118,7 +118,7 @@ class ActivitySceneSeeder2 extends Seeder
         $scene9->save();
 
         // 10
-        $scene10 = $this->createScene($activityId, 'hallway.jpg');
+        $scene10 = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $dialogue10 = $this->createDialogue('Help you? With what?',
             $mcCharacterId);
 
@@ -126,7 +126,7 @@ class ActivitySceneSeeder2 extends Seeder
         $scene10->save();
 
         // 11
-        $scene11 = $this->createScene($activityId, 'hallway.jpg');
+        $scene11 = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $dialogue11 = $this->createDialogue('Well, one of the students came to us with a problem. We’re trying to figure out how to help them, but we’re a bit stuck',
             $agathaCharacterId);
 
@@ -134,7 +134,7 @@ class ActivitySceneSeeder2 extends Seeder
         $scene11->save();
 
         // 12
-        $scene12 = $this->createScene($activityId, 'hallway.jpg');
+        $scene12 = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $dialogue12 = $this->createDialogue('We thought your fresh perspective might help us come up with something creative. Care to give it a shot?',
             $agungCharacterId);
 
@@ -145,7 +145,7 @@ class ActivitySceneSeeder2 extends Seeder
         $dialogue_option_12b = $this->createDialogueOption($dialogue12->id, 'I’ll do my best to help.');
         $dialogue_option_12c = $this->createDialogueOption($dialogue12->id, 'Let’s tackle this together.');
 
-        $scene12a = $this->createScene($activityId, 'hallway.jpg');
+        $scene12a = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $dialogue12a = $this->createDialogue('Absolutely, let’s work on it.',
             $mcCharacterId);
 
@@ -153,7 +153,7 @@ class ActivitySceneSeeder2 extends Seeder
         $scene12a->save();
 
 
-        $scene12b = $this->createScene($activityId, 'hallway.jpg');
+        $scene12b = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $dialogue12b = $this->createDialogue('I’ll do my best to help.',
             $mcCharacterId);
 
@@ -161,7 +161,7 @@ class ActivitySceneSeeder2 extends Seeder
         $scene12b->save();
 
 
-        $scene12c = $this->createScene($activityId, 'hallway.jpg');
+        $scene12c = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $dialogue12c = $this->createDialogue('Let’s tackle this together.',
             $mcCharacterId);
 
@@ -170,14 +170,14 @@ class ActivitySceneSeeder2 extends Seeder
 
 
         // Minigame
-        $scene13 = $this->createScene($activityId, 'hallway.jpg');
+        $scene13 = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $minigame13 = $this->createStoryCase();
 
         $scene13->sceneable()->associate($minigame13);
         $scene13->save();
 
         // 14
-        $scene14 = $this->createScene($activityId, 'hallway.jpg');
+        $scene14 = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $dialogue14 = $this->createDialogue('That was amazing! Your solution is exactly what we needed.',
             $agathaCharacterId);
     
@@ -185,7 +185,7 @@ class ActivitySceneSeeder2 extends Seeder
         $scene14->save();
     
         // 15
-        $scene15 = $this->createScene($activityId, 'hallway.jpg');
+        $scene15 = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $dialogue15 = $this->createDialogue('You’ve really helped that student. Your problem-solving skills are impressive!',
             $agungCharacterId);
     
@@ -193,7 +193,7 @@ class ActivitySceneSeeder2 extends Seeder
         $scene15->save();
     
         // 16
-        $scene16 = $this->createScene($activityId, 'hallway.jpg');
+        $scene16 = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $dialogue16 = $this->createDialogue('I’m glad I could help. Teamwork makes a difference.',
             $mcCharacterId);
     
@@ -201,7 +201,7 @@ class ActivitySceneSeeder2 extends Seeder
         $scene16->save();
     
         // 17
-        $scene17 = $this->createScene($activityId, 'hallway.jpg');
+        $scene17 = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $dialogue17 = $this->createDialogue('I’ll make sure to share this story in the News Club. It’s a great example of collaboration.',
             $agathaCharacterId);
     
@@ -209,7 +209,7 @@ class ActivitySceneSeeder2 extends Seeder
         $scene17->save();
     
         // 18
-        $scene18 = $this->createScene($activityId, 'hallway.jpg');
+        $scene18 = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $dialogue18 = $this->createDialogue('And I’ll let the student know, thanks for stepping up!',
             $agungCharacterId);
     
@@ -217,7 +217,7 @@ class ActivitySceneSeeder2 extends Seeder
         $scene18->save();
     
         // 19
-        $scene19 = $this->createScene($activityId, 'hallway.jpg');
+        $scene19 = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $dialogue19 = $this->createDialogue('Anytime! Let me know if there’s more I can do.',
             $mcCharacterId);
     
@@ -225,7 +225,7 @@ class ActivitySceneSeeder2 extends Seeder
         $scene19->save();
     
         // 20
-        $scene20 = $this->createScene($activityId, 'hallway.jpg');
+        $scene20 = $this->createScene($activityId, '/backgrounds/Hallway.png');
         $dialogue20 = $this->createDialogue('Oh, we’ll definitely call you again. You’re a natural at this!',
             $agathaCharacterId);
     
@@ -233,7 +233,7 @@ class ActivitySceneSeeder2 extends Seeder
         $scene20->save();
     
         // 21
-        $scene21 = $this->createScene($activityId, 'hallway.jpg', false, true);
+        $scene21 = $this->createScene($activityId, '/backgrounds/Hallway.png', false, true);
         $dialogue21 = $this->createDialogue('With your problem-solving skills, I’m sure you’ll make an amazing Beescholar. Keep it up!',
             $agungCharacterId);
     

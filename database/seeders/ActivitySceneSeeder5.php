@@ -50,42 +50,42 @@ class ActivitySceneSeeder5 extends Seeder
         $mcCharacterId = Character::where('character_name', '[MC]')->first()->id;
 
         // 1
-        $scene1 = $this->createScene($activityId, 'classroom.jpg', true, false);
+        $scene1 = $this->createScene($activityId, '/backgrounds/Classroom.png', true, false);
         $dialogue1 = $this->createDialogue('Ah, [MC]! Right on time. Please, take a seat. We have much to discuss.', $diyanCharacterId);
 
         $scene1->sceneable()->associate($dialogue1);
         $scene1->save();
 
         // 2
-        $scene2 = $this->createScene($activityId, 'classroom.jpg');
+        $scene2 = $this->createScene($activityId, '/backgrounds/Classroom.png');
         $dialogue2 = $this->createDialogue('As a Beescholar candidate, your journey here is more than academics. It’s about leadership, perseverance, and proving your worth.', $diyanCharacterId);
 
         $scene2->sceneable()->associate($dialogue2);
         $scene2->save();
 
         // 3
-        $scene3 = $this->createScene($activityId, 'classroom.jpg');
+        $scene3 = $this->createScene($activityId, '/backgrounds/Classroom.png');
         $dialogue3 = $this->createDialogue('Proving my worth? What do you mean, Mr. Diyan?', $mcCharacterId);
 
         $scene3->sceneable()->associate($dialogue3);
         $scene3->save();
 
         // 4
-        $scene4 = $this->createScene($activityId, 'classroom.jpg');
+        $scene4 = $this->createScene($activityId, '/backgrounds/Classroom.png');
         $dialogue4 = $this->createDialogue('You’ll face a Stage—a series of challenges designed to test your quick thinking, problem-solving, and communication. Think of it as a rite of passage.', $diyanCharacterId);
 
         $scene4->sceneable()->associate($dialogue4);
         $scene4->save();
 
         // 5
-        $scene5 = $this->createScene($activityId, 'classroom.jpg');
+        $scene5 = $this->createScene($activityId, '/backgrounds/Classroom.png');
         $dialogue5 = $this->createDialogue('I’ll guide you through a tutorial first. It will help you understand what each type of question entails. Pay attention—this knowledge will be vital.', $diyanCharacterId);
 
         $scene5->sceneable()->associate($dialogue5);
         $scene5->save();
 
         // 6
-        $scene6 = $this->createScene($activityId, 'classroom.jpg');
+        $scene6 = $this->createScene($activityId, '/backgrounds/Classroom.png');
         $event6 = Event::create([
             'event_name' => 'Stage Tutorial',
             'event_type' => 'Tutorial'
@@ -95,7 +95,7 @@ class ActivitySceneSeeder5 extends Seeder
         $scene6->save();
 
         // 7
-        $scene7 = $this->createScene($activityId, 'classroom.jpg');
+        $scene7 = $this->createScene($activityId, '/backgrounds/Classroom.png');
         $dialogue7 = $this->createDialogue('Hey, [MC]! Ready to rock the Stage? I heard it’s no walk in the park, but I’m sure you’ll nail it.', $ehanCharacterId);
 
         $dialogue_option_7a = $this->createDialogueOption($dialogue7->id, 'Thanks, Ehan! I’ll do my best.');
@@ -105,68 +105,68 @@ class ActivitySceneSeeder5 extends Seeder
         $scene7->save();
 
         // Branch 1:
-        $scene7a = $this->createScene($activityId, 'classroom.jpg');
+        $scene7a = $this->createScene($activityId, '/backgrounds/Classroom.png');
         $dialogue7a = $this->createDialogue('Alright, I’ll give it a try.', $mcCharacterId);
         $scene7a->sceneable()->associate($dialogue7a);
         $scene7a->save();
 
-        $scene8a = $this->createScene($activityId, 'classroom.jpg');
+        $scene8a = $this->createScene($activityId, '/backgrounds/Classroom.png');
         $dialogue8a = $this->createDialogue('That’s the spirit! Just focus, and you’ll be great.', $ehanCharacterId);
         $scene8a->sceneable()->associate($dialogue8a);
         $scene8a->save();
 
         // Branch 2:
-        $scene7b = $this->createScene($activityId, 'classroom.jpg');
+        $scene7b = $this->createScene($activityId, '/backgrounds/Classroom.png');
         $dialogue7b = $this->createDialogue('Rock the Stage? Sounds intimidating!', $mcCharacterId);
         $scene7b->sceneable()->associate($dialogue7b);
         $scene7b->save();
 
-        $scene8b = $this->createScene($activityId, 'classroom.jpg');
+        $scene8b = $this->createScene($activityId, '/backgrounds/Classroom.png');
         $dialogue8b = $this->createDialogue('Yeah, it can be. But you’ve got this. Just treat it like a jam session—go with the flow.', $ehanCharacterId);
         $scene8b->sceneable()->associate($dialogue8b);
         $scene8b->save();
 
         // Branch 3:
-        $scene7c = $this->createScene($activityId, 'classroom.jpg');
+        $scene7c = $this->createScene($activityId, '/backgrounds/Classroom.png');
         $dialogue7c = $this->createDialogue('Any chance I can skip this?', $mcCharacterId);
         $scene7c->sceneable()->associate($dialogue7c);
         $scene7c->save();
 
-        $scene8c = $this->createScene($activityId, 'classroom.jpg');
+        $scene8c = $this->createScene($activityId, '/backgrounds/Classroom.png');
         $dialogue8c = $this->createDialogue('Skip? (laughs) Nope, no skipping. But hey, I’ll be cheering for you!', $ehanCharacterId);
         $scene8c->sceneable()->associate($dialogue8c);
         $scene8c->save();
 
         // 9
-        $scene9 = $this->createScene($activityId, 'classroom.jpg');
+        $scene9 = $this->createScene($activityId, '/backgrounds/Classroom.png');
         $dialogue9 = $this->createDialogue('Alright, let’s get this over with.', $mcCharacterId);
 
         $scene9->sceneable()->associate($dialogue9);
         $scene9->save();
 
         // 10
-        $scene10 = $this->createScene($activityId, 'classroom.jpg');
+        $scene10 = $this->createScene($activityId, '/backgrounds/Classroom.png');
         $dialogue10 = $this->createDialogue('Don’t forget, the Stage is about showing who you are. Confidence is key. And maybe… a little luck.', $dianaCharacterId);
 
         $scene10->sceneable()->associate($dialogue10);
         $scene10->save();
 
         // 11
-        $scene11 = $this->createScene($activityId, 'classroom.jpg');
+        $scene11 = $this->createScene($activityId, '/backgrounds/Classroom.png');
         $dialogue11 = $this->createDialogue('Everyone, attention! Candidates, please take your seats and prepare for the first challenge. Remember, you need at least 70 points to move forward.', $agungCharacterId);
 
         $scene11->sceneable()->associate($dialogue11);
         $scene11->save();
 
         // 12
-        $scene12 = $this->createScene($activityId, 'classroom.jpg');
+        $scene12 = $this->createScene($activityId, '/backgrounds/Classroom.png');
         $dialogue12 = $this->createDialogue('The Stage begins now. Show us what you’re made of, Beescholars!', $agungCharacterId);
 
         $scene12->sceneable()->associate($dialogue12);
         $scene12->save();
 
         // Minigame Trigger
-        $scene13 = $this->createScene($activityId, 'classroom.jpg');
+        $scene13 = $this->createScene($activityId, '/backgrounds/Classroom.png');
         $minigame13 = $this->createStageMinigame();
 
         $scene13->sceneable()->associate($minigame13);
@@ -174,28 +174,28 @@ class ActivitySceneSeeder5 extends Seeder
 
         // Post-Minigame Dialogue
         // 14
-        $scene14 = $this->createScene($activityId, 'classroom.jpg');
+        $scene14 = $this->createScene($activityId, '/backgrounds/Classroom.png');
         $dialogue14 = $this->createDialogue('See? That wasn’t so bad. You’ve got this, [MC]!', $ehanCharacterId);
 
         $scene14->sceneable()->associate($dialogue14);
         $scene14->save();
 
         // 15
-        $scene15 = $this->createScene($activityId, 'classroom.jpg');
+        $scene15 = $this->createScene($activityId, '/backgrounds/Classroom.png');
         $dialogue15 = $this->createDialogue('You nailed it! I knew you could do it.', $dianaCharacterId);
 
         $scene15->sceneable()->associate($dialogue15);
         $scene15->save();
 
         // 16
-        $scene16 = $this->createScene($activityId, 'classroom.jpg');
+        $scene16 = $this->createScene($activityId, '/backgrounds/Classroom.png');
         $dialogue16 = $this->createDialogue('Let’s just hope I don’t mess up the next Stage.', $mcCharacterId);
 
         $scene16->sceneable()->associate($dialogue16);
         $scene16->save();
 
         // 17
-        $scene17 = $this->createScene($activityId, 'classroom.jpg', false, true);
+        $scene17 = $this->createScene($activityId, '/backgrounds/Classroom.png', false, true);
         $dialogue17 = $this->createDialogue('One step at a time. Take this moment to rest and reflect. There’s more to come.', $agungCharacterId);
 
         $scene17->sceneable()->associate($dialogue17);

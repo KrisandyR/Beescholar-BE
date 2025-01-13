@@ -42,7 +42,7 @@ class ActivitySceneSeeder1 extends Seeder
         $mcCharacterId = Character::where('character_name', '[MC]')->first()->id;
 
         // 1
-        $scene1 = $this->createScene($activityId, 'teachers_office.jpg', true, false);
+        $scene1 = $this->createScene($activityId, '/backgrounds/Teacher-Office.png', true, false);
         $dialogue1 = $this->createDialogue('Welcome, [MC]. Please, have a seat. I have some exciting news for you.',
             $diyanCharacterId);
 
@@ -50,7 +50,7 @@ class ActivitySceneSeeder1 extends Seeder
         $scene1->save();
 
         // 2
-        $scene2 = $this->createScene($activityId, 'teachers_office.jpg');
+        $scene2 = $this->createScene($activityId, '/backgrounds/Teacher-Office.png');
         $dialogue2 = $this->createDialogue('Exciting news? What is it, Mr. Diyan?',
             $mcCharacterId);
 
@@ -58,7 +58,7 @@ class ActivitySceneSeeder1 extends Seeder
         $scene2->save();
 
         // 3
-        $scene3 = $this->createScene($activityId, 'teachers_office.jpg');
+        $scene3 = $this->createScene($activityId, '/backgrounds/Teacher-Office.png');
         $dialogue3 = $this->createDialogue('After reviewing your performance and observing your potential, I am delighted to inform you that you’ve officially been accepted as a member of the Beescholar organization!',
             $diyanCharacterId);
 
@@ -66,7 +66,7 @@ class ActivitySceneSeeder1 extends Seeder
         $scene3->save();
 
         // 4
-        $scene4 = $this->createScene($activityId, 'teachers_office.jpg');
+        $scene4 = $this->createScene($activityId, '/backgrounds/Teacher-Office.png');
         $dialogue4 = $this->createDialogue('Really? That’s amazing! I’m so grateful for this opportunity.',
             $mcCharacterId);
 
@@ -74,7 +74,7 @@ class ActivitySceneSeeder1 extends Seeder
         $scene4->save();
 
         // 5
-        $scene5 = $this->createScene($activityId, 'teachers_office.jpg');
+        $scene5 = $this->createScene($activityId, '/backgrounds/Teacher-Office.png');
         $dialogue5 = $this->createDialogue('Of course. Beescholar plays a vital role in this campus. You’ll not only learn valuable skills but also contribute to making this community a better place.',
             $diyanCharacterId);
 
@@ -82,7 +82,7 @@ class ActivitySceneSeeder1 extends Seeder
         $scene5->save();
 
         // 6
-        $scene6 = $this->createScene($activityId, 'teachers_office.jpg');
+        $scene6 = $this->createScene($activityId, '/backgrounds/Teacher-Office.png');
         $dialogue6 = $this->createDialogue('Here, I also have something for you. This poster explains the steps and process of becoming a Beescholar. Keep it safe—it will help you understand your role better.',
             $diyanCharacterId);
 
@@ -90,7 +90,7 @@ class ActivitySceneSeeder1 extends Seeder
         $scene6->save();
 
         // 7
-        $scene7 = $this->createScene($activityId, 'teachers_office.jpg');
+        $scene7 = $this->createScene($activityId, '/backgrounds/Teacher-Office.png');
         $dialogue7 = $this->createDialogue('Thank you, Mr. Diyan. I’ll make sure to read it carefully and prepare myself.',
             $mcCharacterId);
 
@@ -98,7 +98,7 @@ class ActivitySceneSeeder1 extends Seeder
         $scene7->save();
 
         // 8
-        $scene8 = $this->createScene($activityId, 'teachers_office.jpg');
+        $scene8 = $this->createScene($activityId, '/backgrounds/Teacher-Office.png');
         $dialogue8 = $this->createDialogue('Good. This poster will also be saved in your tutorial icon, so you can access it anytime. From today onwards, your journey as a Beescholar begins. Make sure to tackle each stage with enthusiasm.',
             $diyanCharacterId);
         $dialogue_option_8a = $this->createDialogueOption($dialogue8->id, 'I will! I’ll do my very best.');
@@ -109,7 +109,7 @@ class ActivitySceneSeeder1 extends Seeder
         $scene8->save();
 
         //8a
-        $scene8a = $this->createScene($activityId, 'teachers_office.jpg');
+        $scene8a = $this->createScene($activityId, '/backgrounds/Teacher-Office.png');
         $dialogue8a = $this->createDialogue('I will! I’ll do my very best.',
             $mcCharacterId);
 
@@ -117,7 +117,7 @@ class ActivitySceneSeeder1 extends Seeder
         $scene8a->save();
 
         //8b
-        $scene8b = $this->createScene($activityId, 'teachers_office.jpg');
+        $scene8b = $this->createScene($activityId, '/backgrounds/Teacher-Office.png');
         $dialogue8b = $this->createDialogue('No worries! I’ll handle it.',
             $mcCharacterId);
 
@@ -125,7 +125,7 @@ class ActivitySceneSeeder1 extends Seeder
         $scene8b->save();
 
         //8c
-        $scene8c = $this->createScene($activityId, 'teachers_office.jpg');
+        $scene8c = $this->createScene($activityId, '/backgrounds/Teacher-Office.png');
         $dialogue8c = $this->createDialogue('You can count on me! I’ll do my best.',
             $mcCharacterId);
 
@@ -133,7 +133,7 @@ class ActivitySceneSeeder1 extends Seeder
         $scene8c->save();
 
         //9a
-        $scene9a = $this->createScene($activityId, 'teachers_office.jpg', false, true);
+        $scene9a = $this->createScene($activityId, '/backgrounds/Teacher-Office.png', false, true);
         $dialogue9a = $this->createDialogue('Good! I know you’ll do great.',
             $diyanCharacterId);
 
@@ -141,7 +141,7 @@ class ActivitySceneSeeder1 extends Seeder
         $scene9a->save();
 
         //9b
-        $scene9b = $this->createScene($activityId, 'teachers_office.jpg', false, true);
+        $scene9b = $this->createScene($activityId, '/backgrounds/Teacher-Office.png', false, true);
         $dialogue9b = $this->createDialogue('That’s the attitude I like to see!',
             $diyanCharacterId);
 
@@ -149,7 +149,7 @@ class ActivitySceneSeeder1 extends Seeder
         $scene9b->save();
 
         //9c
-        $scene9c = $this->createScene($activityId, 'teachers_office.jpg', false, true);
+        $scene9c = $this->createScene($activityId, '/backgrounds/Teacher-Office.png', false, true);
         $dialogue9c = $this->createDialogue('I trust you. Let’s make it happen!',
             $diyanCharacterId);
 

@@ -186,6 +186,10 @@ return new class extends Migration
             $table->foreign('activity_progress_id')->references('id')->on('activity_progress')->onDelete('cascade');
             $table->foreign('minigame_attempt_id')->references('id')->on('minigame_attempts')->onDelete('cascade');
         });
+
+        Schema::table('personal_access_tokens', function (Blueprint $table) {
+            $table->uuid('tokenable_id')->change(); // Change column to UUID
+        });
     }
 
 };

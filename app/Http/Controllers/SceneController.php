@@ -20,9 +20,10 @@ class SceneController extends Controller
         $this->activityService = $activityService;
         $this->questService = $questService;
     }
-    public function getScene($sceneId)
+    public function getScene(Request $request)
     {
         try{
+            $sceneId = $request->route('sceneId');
             if(!$this->sceneService->getScene($sceneId)){
                 return response()->json([
                     'success' => false,
@@ -41,10 +42,11 @@ class SceneController extends Controller
         }
     }
 
-    public function processScene($sceneId) {
+    public function processScene(Request $request) {
         try{
             //Implement auth userId
-            $userId = config('constants.default_user_id');
+            $userId = $request->user()->id;
+            $sceneId = $request->route('sceneId');
             $scene = $this->sceneService->getScene($sceneId);
 
             if(!$scene){

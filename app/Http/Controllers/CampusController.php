@@ -17,9 +17,10 @@ class CampusController extends Controller
         $this->campusService = $campusService;
     }
     
-    public function getUnlockedCampus(string $userId)
+    public function getUnlockedCampus(Request $request)
     {
         try {
+            $userId = $request->user()->id;
             $data = $this->campusService->getUnlockedCampus($userId);
 
             if ($data->isEmpty()){

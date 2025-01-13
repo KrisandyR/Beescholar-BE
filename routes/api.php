@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LeaderboardController;
 use App\Http\Controllers\MinigameController;
 use App\Http\Controllers\RoomController;
@@ -22,23 +23,26 @@ use App\Http\Controllers\CharacterController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/characters/{campusName}', [CharacterController::class, 'getCharactersBasedOnCampus']);
-Route::get('/activity/{roomId}', [ActivityController::class, 'getActivityFromRoom']);
-Route::get('/campus/{userId}', [CampusController::class, 'getUnlockedCampus']);
-Route::get('/room/{campusId}', [RoomController::class, 'getRoomFromCampus']);
-Route::get('/minigame/{minigameId}', [MinigameController::class, 'getMinigame']);
-Route::get('/scene/{sceneId}', [SceneController::class, 'getScene']);
-Route::post('/process_scene/{sceneId}', [SceneController::class, 'processScene']);
-Route::get('/user/{userId}', [UserController::class, 'getUser']);
-Route::post('/submit/quiz', [MinigameController::class, 'submitQuiz']);
-Route::post('/submit/crossword', [MinigameController::class, 'submitCrossword']);
-Route::post('/submit/drum_puzzle', [MinigameController::class, 'submitDrumPuzzle']);
 
-Route::prefix('leaderboard')->group(function () {
-    Route::get('stats/{userId}', [LeaderboardController::class, 'getUserProgress']);
-    Route::get('{leaderboardType}/{userId}', [LeaderboardController::class, 'getLeaderboard']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/characters/{campusName}', [CharacterController::class, 'getCharactersBasedOnCampus']);
+    Route::get('/activity/{roomId}', [ActivityController::class, 'getActivityFromRoom']);
+    Route::get('/campus', [CampusController::class, 'getUnlockedCampus']); // No userId in the route
+    Route::get('/room/{campusId}', [RoomController::class, 'getRoomFromCampus']);
+    Route::get('/minigame/{minigameId}', [MinigameController::class, 'getMinigame']);
+    Route::get('/scene/{sceneId}', [SceneController::class, 'getScene']);
+    Route::post('/process_scene/{sceneId}', [SceneController::class, 'processScene']);
+    Route::get('/user', [UserController::class, 'getUser']); // No userId in the route
+    Route::post('/submit/quiz', [MinigameController::class, 'submitQuiz']);
+    Route::post('/submit/crossword', [MinigameController::class, 'submitCrossword']);
+    Route::post('/submit/drum_puzzle', [MinigameController::class, 'submitDrumPuzzle']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+
+
+    Route::prefix('leaderboard')->group(function () {
+        Route::get('stats', [LeaderboardController::class, 'getUserProgress']); // No userId in the route
+        Route::get('{leaderboardType}', [LeaderboardController::class, 'getLeaderboard']); // No userId in the route
+    });
 });

@@ -32,9 +32,10 @@ class MinigameController extends Controller
         $this->pointService = $pointService;
         $this->drumPuzzleService = $drumPuzzleService;
     }
-    public function getMinigame(string $minigameId)
+    public function getMinigame(Request $request)
     {
         try{
+            $minigameId = $request->route('minigameId');
             if(!$this->minigameService->findMinigame($minigameId)){
                 return response()->json([
                     'success' => false,
@@ -57,7 +58,7 @@ class MinigameController extends Controller
     public function submitQuiz(Request $request)
     {
         $dto = new SubmitQuizDTO($request);
-        $userId = config('constants.default_user_id');
+        $userId = $request->user()->id;
     
         if (!$this->minigameService->findMinigame($dto->minigameId)) {
             return response()->json(['success' => false, 'message' => 'Minigame not found']);
@@ -146,7 +147,7 @@ class MinigameController extends Controller
     public function submitCrossword(Request $request)
     {
         $dto = new SubmitCrosswordDTO($request);
-        $userId = config('constants.default_user_id');
+        $userId = $request->user()->id;
 
         if(!$this->minigameService->findMinigame($dto->minigameId)){
             return response()->json(['success' => false, 'message' => 'Minigame not found']);
@@ -204,7 +205,7 @@ class MinigameController extends Controller
     public function submitDrumPuzzle(Request $request)
     {
         $dto = new SubmitDrumPuzzleDTO($request);
-        $userId = config('constants.default_user_id');
+        $userId = $request->user()->id;
 
         if(!$this->minigameService->findMinigame($dto->minigameId)){
             return response()->json(['success' => false, 'message' => 'Minigame not found']);

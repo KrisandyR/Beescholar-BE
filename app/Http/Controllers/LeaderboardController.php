@@ -24,9 +24,11 @@ class LeaderboardController extends Controller
         $this->progressService = $progressService;
     }
 
-    public function getLeaderboard(string $leaderboardType, string $userId): JsonResponse
+    public function getLeaderboard(Request $request): JsonResponse
     {
-        // try {
+        try {
+            $userId = $request->user()->id;
+            $leaderboardType = $request->route('leaderboardType');
             // Resolve leaderboard data using the helper method
             $data = $this->resolveLeaderboardData($leaderboardType, $userId);
 
@@ -52,15 +54,15 @@ class LeaderboardController extends Controller
 
             // Return a JSON response
             return $response;
-        // } catch (\Exception $e) {
-        //     return response()->json(['error' => $e->getMessage()], 400); // Bad Request
-        // }
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400); // Bad Request
+        }
     }
 
-    public function getUserProgress(string $userId): JsonResponse
+    public function getUserProgress(Request $request): JsonResponse
     {
         // add try catch
-
+        $userId = $request->user()->id;
         $data = $this->progressService->getUserProgress($userId);
 
         if (empty($data)){

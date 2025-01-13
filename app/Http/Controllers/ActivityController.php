@@ -18,10 +18,12 @@ class ActivityController extends Controller
     {
         $this->activityService = $activityService;
     }
-    public function getActivityFromRoom(string $roomId)
+    public function getActivityFromRoom(Request $request)
     {
         try {
-            $userId = config('constants.default_user_id');
+
+            $roomId = $request->route('roomId');
+            $userId = $request->user()->id;
 
             // Use service to get quests with activities
             $activitiesResult = $this->activityService->getActivities($roomId, $userId);

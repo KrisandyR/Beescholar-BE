@@ -29,8 +29,8 @@ return new class extends Migration
             $table->integer('semester');
             $table->string('gender');
             $table->string('email');
+            $table->string('password');
             $table->string('profile_picture')->nullable();
-            $table->rememberToken();
             $table->timestamps();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

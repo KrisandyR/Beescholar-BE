@@ -15,10 +15,10 @@ class UserController extends Controller
         $this->userService = $userService;
     }
     //
-    public function getUser(string $userId)
+    public function getUser(Request $request)
     {
         try {
-            $user = $this->userService->getUser($userId);
+            $user = $this->userService->getUser($request->user()->id);
 
             if (!$user){
                 $response = response()->json([

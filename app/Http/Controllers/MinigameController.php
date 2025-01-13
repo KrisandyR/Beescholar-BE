@@ -70,18 +70,20 @@ class MinigameController extends Controller
             $minigameAttempt = $this->minigameService->createMinigameAttempt($dto->minigameId, $userId);
         }
     
+        $quizChoiceAnswers = $dto->quizChoiceAnswers ?? [];
+        $quizStepAnswers = $dto->quizStepAnswers ?? [];
         $quizChoiceResults = new Collection();
         $quizStepsResults = new Collection();
         $totalPoint = 0;
         $hasAnswer = $this->minigameService->hasAnswers($minigameAttempt->id);
 
-        foreach ($dto->quizChoiceAnswers as $choiceAnswer) {
+        foreach ($quizChoiceAnswers as $choiceAnswer) {
             $quizChoiceResults->push(
                 $this->processChoiceAnswer($minigameAttempt->id, $choiceAnswer, $hasAnswer, $totalPoint)
             );
         }
     
-        foreach ($dto->quizStepAnswers as $stepAnswer) {
+        foreach ($quizStepAnswers as $stepAnswer) {
             $quizStepsResults->push(
                 $this->processStepAnswer($minigameAttempt->id, $stepAnswer, $hasAnswer, $totalPoint)
             );

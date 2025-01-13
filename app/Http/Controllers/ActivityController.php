@@ -24,12 +24,10 @@ class ActivityController extends Controller
             $userId = config('constants.default_user_id');
 
             // Use service to get quests with activities
-            $questWithActivities = $this->activityService->getQuestsWithActivities($roomId, $userId);
-
-            $nonQuestActivities = $this->activityService->getNonQuestActivities($roomId, $userId);
+            $activitiesResult = $this->activityService->getActivities($roomId, $userId);
     
             // Handle empty results
-            if ($questWithActivities->isEmpty() && $nonQuestActivities->isEmpty()) {
+            if ($activitiesResult->isEmpty()) {
                 return response()->json([
                     'success' => false,
                     'message' => 'No activities found for the specified room and user.',
@@ -39,10 +37,7 @@ class ActivityController extends Controller
             // Transform and return data
             return response()->json([
                 'success' => true,
-                'data' => (object) [
-                    'questActivities' => QuestActivityResource::collection($questWithActivities),
-                    'nonQuestActivites' => ActivityResource::collection($nonQuestActivities)
-                ]
+                'data' => QuestActivityResource::collection($activitiesResult)
             ]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400); // Bad Request

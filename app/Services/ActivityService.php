@@ -18,7 +18,7 @@ class ActivityService
         $this->pointService = $pointService;
     }
 
-    public function getQuestsWithActivities(string $roomId, string $userId): Collection
+    public function getActivities(string $roomId, string $userId): Collection
     {
         $activities = Activity::with([
                 'activityProgress' => function ($query) use ($userId) {
@@ -55,59 +55,25 @@ class ActivityService
         });
     
         // Get unique quest IDs
-        $questIds = $activities->pluck('quest_id')->unique()->values();
+        $activityQuestIds = $activities->whereNotNull('quest_id')->pluck('quest_id')->unique()->values();
+        $nonQuestActivities = $activities->whereNull('quest_id');
 
         // Prepare quests with their activities
-        $questWithActivities = new Collection();
+        $activitiesResult = new Collection();
     
-        foreach ($questIds as $questId) {
+        foreach ($activityQuestIds as $questId) {
             $quest = Quest::findOrFail($questId); // Fetch the quest
             $quest->activities = $activities->where('quest_id', $questId); // Filter activities for this quest
     
             // Add quest to the collection
-            $questWithActivities->push($quest);
+            $activitiesResult->push($quest);
+        }
+
+        foreach($nonQuestActivities as $activity){
+            $activitiesResult->push($activity);
         }
     
-        return $questWithActivities;
-    }
-
-    public function getNonQuestActivities($roomId, $userId){
-        $activities = Activity::with([
-                'activityProgress' => function ($query) use ($userId) {
-                    $query->where('user_id', $userId);
-                },
-                'firstScene' => function ($query) {
-                    $query->where('is_start_scene', true);
-                }
-            ])
-            ->where('room_id', $roomId)
-            ->where('quest_id', null)
-            ->whereHas('activityProgress', function ($query) use ($userId) {
-                $query->where('user_id', $userId);
-            })
-            ->get();
-
-        if ($activities->isEmpty()) {
-            return new Collection(); // Return empty collection for error handling in controller
-        }
-
-        // Add dynamic fields to activities
-        $activities->transform(function ($activity) {
-            $activityProgress = $activity->activityProgress->first();
-
-            // Determine start_scene_id
-            $activity->start_scene_id = $activityProgress && $activityProgress->last_scene_id
-                ? $activityProgress->last_scene_id
-                : $activity->firstScene()->first()?->id;
-
-            // Set is_completed from activityProgress if it exists
-            $activity->is_completed = $activityProgress?->is_completed ?? false;
-
-            return $activity;
-        });
-
-        return $activities;
-
+        return $activitiesResult;
     }
 
     public function progressUserActivity(string $userId, $scene)
@@ -129,7 +95,6 @@ class ActivityService
         if ($progress) {
             $completionPerformed = !$progress->is_completed && $scene->is_end_scene;
             // Determine values based on existing progress and scene type
-            $additionalValues = [];
 
             if(!$progress->is_completed && $scene->is_end_scene){
                 $additionalValues = [

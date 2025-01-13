@@ -38,7 +38,7 @@ class ActivitySceneSeeder7 extends Seeder
         $mcCharacterId = Character::where('character_name', '[MC]')->first()->id;
 
         // Scene 1: It was great meeting everyone
-        $scene1 = $this->createScene($activityId, '/backgrounds/Classroom.png');
+        $scene1 = $this->createScene($activityId, '/backgrounds/Classroom.png', true, false);
         $dialogue1 = $this->createDialogue('It was great meeting everyone. I’m looking forward to this journey.', $mcCharacterId);
         $scene1->sceneable()->associate($dialogue1);
         $scene1->save();
@@ -62,7 +62,7 @@ class ActivitySceneSeeder7 extends Seeder
         $scene4->save();
 
         // Scene 5: Here’s to new beginnings
-        $scene5 = $this->createScene($activityId, '/backgrounds/Classroom.png');
+        $scene5 = $this->createScene($activityId, '/backgrounds/Classroom.png', false, true);
         $dialogue5 = $this->createDialogue('Here’s to new beginnings and an exciting journey ahead!', $mcCharacterId);
         $scene5->sceneable()->associate($dialogue5);
         $scene5->save();

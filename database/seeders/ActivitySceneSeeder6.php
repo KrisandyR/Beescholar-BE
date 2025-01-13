@@ -38,7 +38,7 @@ class ActivitySceneSeeder6 extends Seeder
     public function createSceneFlow(string $activityId)
     {
         // Tutorial Trigger
-        $scene1 = $this->createScene($activityId);
+        $scene1 = $this->createScene($activityId, null, true, false);
         $event1 = Event::create([
             'event_name' => 'Crossword Tutorial',
             'event_type' => 'Trivial Task',
@@ -50,11 +50,13 @@ class ActivitySceneSeeder6 extends Seeder
         $scene1->save();
 
         // Minigame Trigger
-        $scene2 = $this->createScene($activityId);
+        $scene2 = $this->createScene($activityId, null, false, true);
         $minigame2 = $this->createCrosswordMinigame();
 
         $scene2->sceneable()->associate($minigame2);
         $scene2->save();
+
+        $scene1->update(['next_scene_id' => $scene2->id]);
     }
 
     public function createCrosswordMinigame()

@@ -116,7 +116,7 @@ class QuestActivityTableSeeder extends Seeder
     public function questActivity(string $questId){
 
         $campus = Campus::where('campus_name', 'Kemanggisan')->first();
-        $classroom_id = $campus->rooms()->where('room_name', 'Class Room')->first()->id;
+        $classroom_id = $campus->rooms()->where('room_name', 'Classroom')->first()->id;
         $bandroom_id = $campus->rooms()->where('room_name', 'Band Room')->first()->id;
         $teacher_office_id = $campus->rooms()->where('room_name', 'Teacher Office')->first()->id;
         $hallway_id = $campus->rooms()->where('room_name', 'Hallway')->first()->id;

@@ -9,6 +9,9 @@ class QuestActivityResource extends JsonResource
 {
     public function toArray($request)
     {
+        if($this->type && $this->type == 'Trivial Task'){
+            return new ActivityResource($this);
+        }
         return [
             'id' => $this->id,
             'questTitle' => $this->title,

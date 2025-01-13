@@ -26,7 +26,7 @@ class RoomTableSeeder extends Seeder
             if($campus->campus_name == 'Kemanggisan'){
                 Room::create([
                     'campus_id' => $campus->id,
-                    'room_name' => 'Class Room',
+                    'room_name' => 'Classroom',
                     'type' => "Interactible",
                     'background' => '/backgrounds/Classroom.png',
                     'created_by' => 'RoomTableSeeder',
@@ -64,7 +64,7 @@ class RoomTableSeeder extends Seeder
             if($campus->campus_name == 'Alam Sutera'){
                 Room::create([
                     'campus_id' => $campus->id,
-                    'room_name' => 'Class Room',
+                    'room_name' => 'Classroom',
                     'background' => '/backgrounds/Classroom.png',
                     'type' => "Interactible",
                     'created_by' => 'RoomTableSeeder',

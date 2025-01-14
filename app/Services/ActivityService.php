@@ -141,6 +141,11 @@ class ActivityService
     }
 
     public function unlockNextActivity($userId, $nextActivityId) {
+
+        if($nextActivityId == null){
+            return;
+        }
+
         ActivityProgress::create([
             'status' => 'Incomplete',
             'is_completed' => false, // default false

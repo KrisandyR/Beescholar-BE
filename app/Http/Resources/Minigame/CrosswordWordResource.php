@@ -19,6 +19,7 @@ class CrosswordWordResource extends JsonResource
             'wordId' => $this->id,
             'clue' => $this->clue,
             'direction' => $this->direction,
+            'answer' => $this->word_answer,
             'colStartIdx'  => $this->col_start_idx,
             'rowStartIdx'  => $this->row_start_idx,
         ];

@@ -29,7 +29,6 @@ class ActivityService
                 }
             ])
             ->where('room_id', $roomId)
-            ->whereNotNull('quest_id')
             ->whereHas('activityProgress', function ($query) use ($userId) {
                 $query->where('user_id', $userId);
             })

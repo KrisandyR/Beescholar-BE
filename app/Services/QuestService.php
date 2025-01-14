@@ -25,6 +25,10 @@ class QuestService
         $activity = Activity::findOrFail($activityId);
         $questId = $activity->quest_id;
 
+        if($questId == null){
+            return;
+        }
+
         $quest = Quest::findOrFail($questId);
 
         $progress = QuestProgress::where('user_id', $userId)

@@ -14,11 +14,13 @@ class QuestService
 {
     protected $pointService;
     protected $activityService;
+    protected $campusService;
 
-    public function __construct(PointService $pointService, ActivityService $activityService)
+    public function __construct(PointService $pointService, ActivityService $activityService, CampusService $campusService)
     {
         $this->pointService = $pointService;
         $this->activityService = $activityService;
+        $this->campusService = $campusService;
     }
     public function progressUserQuest(string $userId, $activityId): void
     {
@@ -65,6 +67,10 @@ class QuestService
             $this->pointService->getPointFromQuest($userId, $progress);
 
             $this->unlockNextQuest($userId, $quest);
+
+            if($quest->unlock_campus_id !== null){
+                $this->campusService->unlockCampus($userId, $quest->unlock_campus_id);
+            }
         } else {
             $values = array_merge($commonValues, [
                 'status' => 'In Progress',

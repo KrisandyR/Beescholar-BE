@@ -39,4 +39,29 @@ class CampusService
         
         return Campus::whereIn('id', $unlocked_campus_ids)->get();
     }
+
+    public function unlockCampus(string $userId, string $campusId){
+
+        $campus_progress = CampusProgress::where('user_id', $userId)
+            ->where('campus_id', $campusId)->first();
+
+        if(!$campus_progress){
+            CampusProgress::create([
+                'user_id' => $userId,
+                'campus_id' => $campusId,
+                'is_locked' => false, // Default true
+                'is_story_locked' => false,
+                'is_semester_locked' => false,
+                'created_by' => 'GetUnlockedCampus'.$userId,
+                'updated_by' => null,
+            ]);
+        } else {
+            $campus_progress->update([
+                'is_locked' => false, // Default true
+                'is_story_locked' => false,
+                'is_semester_locked' => false,
+            ]);
+            $campus_progress->save();
+        }
+    }
 }

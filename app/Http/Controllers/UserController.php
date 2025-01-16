@@ -38,4 +38,28 @@ class UserController extends Controller
         }
     }
 
+    public function resetUser(Request $request) {
+        try {
+            $user = $this->userService->getUser($request->user()->id);
+
+            if (!$user){
+                $response = response()->json([
+                    'success' => false,
+                    'message' => 'User not found',
+                ], 404);
+            } else {
+                $this->userService->resetUser($user->id);
+                $response = response()->json([
+                    'success' => true,
+                    'message' => 'Reset user data success',
+                ]);
+            }
+    
+            return $response;
+
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 400); // Bad Request
+        }
+    }
+
 }

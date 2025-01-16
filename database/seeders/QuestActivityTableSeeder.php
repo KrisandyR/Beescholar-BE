@@ -22,7 +22,7 @@ class QuestActivityTableSeeder extends Seeder
         $quest1 = Quest::create([
             'title' => 'Welcome to the Campus',
             'description' => 'Help the campus orientation committee set up welcome booths for new students.',
-            'unlock_campus_id' => null,
+            'unlock_campus_id' => $as_campus->id,
             'unlock_quest_id' => null,
             'unlock_activity_id' => null,
             'completion_point' => 100,
@@ -35,7 +35,7 @@ class QuestActivityTableSeeder extends Seeder
         $quest2  = Quest::create([
             'title' => 'Library Mystery',
             'description' => 'Assist the librarian in organizing the archive section and solving the missing book mystery.',
-            'unlock_campus_id' => $as_campus->id,
+            'unlock_campus_id' => null,
             'unlock_quest_id' => null,
             'unlock_activity_id' => null,
             'completion_point' => 1500,

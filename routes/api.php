@@ -39,6 +39,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/submit/crossword', [MinigameController::class, 'submitCrossword']);
     Route::post('/submit/drum_puzzle', [MinigameController::class, 'submitDrumPuzzle']);
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/reset_user', [UserController::class, 'resetUser']);
 
 
     Route::prefix('leaderboard')->group(function () {

@@ -380,7 +380,7 @@ class ActivitySceneSeeder2 extends Seeder
         $mcCharacterId = Character::where('character_name', '[MC]')->first()->id;
 
         $minigame = Minigame::create([
-            'minigame_name' => 'BINUS Academic Assistance',
+            'minigame_name' => 'XYZ Academic Assistance',
             'instruction' => 'Answer questions to guide students with common academic tasks.',
             'maximum_point_reward' => 100,
             'minimum_passing_point' => 50,
@@ -392,7 +392,7 @@ class ActivitySceneSeeder2 extends Seeder
         $quiz = Quiz::create([
             'quiz_type' => 'Story Case',
             'quiz_topic' => 'General Information on Academic Activities',
-            'hint' => 'The answers are based on BINUS academic procedures.',
+            'hint' => 'The answers are based on XYZ academic procedures.',
             'created_by' => 'SceneDialogueSeeder',
             'updated_by' => null
         ]);
@@ -406,7 +406,7 @@ class ActivitySceneSeeder2 extends Seeder
         // Question 1
         $question1 = QuizQuestion::create([
             'quiz_id' => $quiz->id,
-            'question_title' => 'How can a student get their @binus.ac.id username?',
+            'question_title' => 'How can a student get their @xyz.ac.id username?',
             'question_type' => 'Multiple Choice',
             'question_point' => 25,
             'character_id' => $agungCharacterId,
@@ -415,7 +415,7 @@ class ActivitySceneSeeder2 extends Seeder
         ]);
 
         QuizChoice::create([
-            'choice_text' => 'Visit BINUSMAYA and click "GET YOUR USERNAME".',
+            'choice_text' => 'Visit XYZMAYA and click "GET YOUR USERNAME".',
             'is_correct' => true,
             'question_id' => $question1->id,
             'created_by' => 'SceneDialogueSeeder',
@@ -431,7 +431,7 @@ class ActivitySceneSeeder2 extends Seeder
         ]);
 
         QuizChoice::create([
-            'choice_text' => 'Contact the BINUS IT Support team directly.',
+            'choice_text' => 'Contact the XYZ IT Support team directly.',
             'is_correct' => false,
             'question_id' => $question1->id,
             'created_by' => 'SceneDialogueSeeder',
@@ -450,7 +450,7 @@ class ActivitySceneSeeder2 extends Seeder
         ]);
 
         QuizChoice::create([
-            'choice_text' => 'In BINUSMAYA under Schedule > View Academic Calendar.',
+            'choice_text' => 'In XYZMAYA under Schedule > View Academic Calendar.',
             'is_correct' => true,
             'question_id' => $question2->id,
             'created_by' => 'SceneDialogueSeeder',
@@ -458,7 +458,7 @@ class ActivitySceneSeeder2 extends Seeder
         ]);
 
         QuizChoice::create([
-            'choice_text' => 'On the BINUS website homepage.',
+            'choice_text' => 'On the XYZ website homepage.',
             'is_correct' => false,
             'question_id' => $question2->id,
             'created_by' => 'SceneDialogueSeeder',
@@ -520,7 +520,7 @@ class ActivitySceneSeeder2 extends Seeder
         ]);
 
         QuizChoice::create([
-            'choice_text' => 'In BINUSMAYA under Academic Services > Attendance Information.',
+            'choice_text' => 'In XYZMAYA under Academic Services > Attendance Information.',
             'is_correct' => true,
             'question_id' => $question4->id,
             'created_by' => 'SceneDialogueSeeder',

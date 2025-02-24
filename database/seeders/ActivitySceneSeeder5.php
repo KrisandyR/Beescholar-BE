@@ -234,7 +234,7 @@ class ActivitySceneSeeder5 extends Seeder
 
         $minigame = Minigame::create([
             'minigame_name' => 'Exam Preparation Quiz',
-            'instruction' => 'Test your knowledge on exam preparation at BINUS University.',
+            'instruction' => 'Test your knowledge on exam preparation at XYZ University.',
             'maximum_point_reward' => 100,
             'minimum_passing_point' => 70,
             'created_by' => 'SceneDialogueSeeder',
@@ -244,7 +244,7 @@ class ActivitySceneSeeder5 extends Seeder
         $quiz = Quiz::create([
             'quiz_type' => 'Stage',
             'quiz_topic' => 'Exam.',
-            'hint' => 'Refer to BINUSMAYA guidelines and student policies.',
+            'hint' => 'Refer to XYZMAYA guidelines and student policies.',
             'created_by' => 'SceneDialogueSeeder',
             'updated_by' => null,
         ]);
@@ -257,18 +257,18 @@ class ActivitySceneSeeder5 extends Seeder
         $questions = [
             [
                 'type' => 'Multiple Choice',
-                'title' => 'What is required to attend the final exam at BINUS University?',
+                'title' => 'What is required to attend the final exam at XYZ University?',
                 'point' => 10,
                 'choices' => [
                     ['text' => 'Full payment of tuition fees', 'correct' => true],
                     ['text' => 'Attendance below 50%', 'correct' => false],
-                    ['text' => 'No profile photo on BINUSMAYA', 'correct' => false],
+                    ['text' => 'No profile photo on XYZMAYA', 'correct' => false],
                     ['text' => 'No required documents submitted', 'correct' => false],
                 ],
             ],
             [
                 'type' => 'Yes or No',
-                'title' => 'Can students access the exam schedule via BINUSMAYA Mobile?',
+                'title' => 'Can students access the exam schedule via XYZMAYA Mobile?',
                 'point' => 5,
                 'choices' => [
                     ['text' => 'Yes', 'correct' => true],
@@ -280,7 +280,7 @@ class ActivitySceneSeeder5 extends Seeder
                 'title' => 'Arrange the steps to project a non-PPT file onto the screen.',
                 'point' => 15,
                 'steps' => [
-                    ['text' => 'Click start link Zoom from BINUSMAYA LMS', 'order' => 1],
+                    ['text' => 'Click start link Zoom from XYZMAYA LMS', 'order' => 1],
                     ['text' => 'Drag the file to the projector screen', 'order' => 2],
                     ['text' => 'Click "Share Screen" in Zoom', 'order' => 3],
                     ['text' => 'Select "Screen 2" and click Share', 'order' => 4],
@@ -320,7 +320,7 @@ class ActivitySceneSeeder5 extends Seeder
                 'title' => 'Arrange the steps to check attendance for an ongoing semester.',
                 'point' => 15,
                 'steps' => [
-                    ['text' => 'Log in to BINUSMAYA', 'order' => 1],
+                    ['text' => 'Log in to XYZMAYA', 'order' => 1],
                     ['text' => 'Go to Academic Services', 'order' => 2],
                     ['text' => 'Select Attendance Information', 'order' => 3],
                     ['text' => 'Choose the current semester and subject', 'order' => 4],
@@ -337,12 +337,12 @@ class ActivitySceneSeeder5 extends Seeder
             ],
             [
                 'type' => 'Multiple Choice',
-                'title' => 'Which platform provides exam schedules at BINUS?',
+                'title' => 'Which platform provides exam schedules at XYZ?',
                 'point' => 10,
                 'choices' => [
-                    ['text' => 'BINUSMAYA Academic Services', 'correct' => true],
+                    ['text' => 'XYZMAYA Academic Services', 'correct' => true],
                     ['text' => 'Library Information Desk', 'correct' => false],
-                    ['text' => 'BINUS Career Center', 'correct' => false],
+                    ['text' => 'XYZ Career Center', 'correct' => false],
                 ],
             ],
             [
@@ -350,7 +350,7 @@ class ActivitySceneSeeder5 extends Seeder
                 'title' => 'Arrange the steps to request a make-up exam.',
                 'point' => 15,
                 'steps' => [
-                    ['text' => 'Log in to BINUSMAYA', 'order' => 1],
+                    ['text' => 'Log in to XYZMAYA', 'order' => 1],
                     ['text' => 'Go to Student Services > E-Form', 'order' => 2],
                     ['text' => 'Select "Make Up Exam"', 'order' => 3],
                     ['text' => 'Submit the required evidence', 'order' => 4],

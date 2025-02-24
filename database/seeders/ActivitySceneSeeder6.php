@@ -114,7 +114,7 @@ class ActivitySceneSeeder6 extends Seeder
             ],
             [
                 'word_answer' => 'COURSE',
-                'clue' => 'Menu in BINUSMAYA to view class discussions and materials.',
+                'clue' => 'Menu in XYZMAYA to view class discussions and materials.',
                 'direction' => 'vertical',
                 'col_start_idx' => 5,
                 'row_start_idx' => 8,

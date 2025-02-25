@@ -244,7 +244,7 @@ class ActivitySceneSeeder5 extends Seeder
         $quiz = Quiz::create([
             'quiz_type' => 'Stage',
             'quiz_topic' => 'Exam.',
-            'hint' => 'Refer to XYZMAYA guidelines and student policies.',
+            'hint' => 'Refer to XYZ LMS guidelines and student policies.',
             'created_by' => 'SceneDialogueSeeder',
             'updated_by' => null,
         ]);
@@ -262,13 +262,13 @@ class ActivitySceneSeeder5 extends Seeder
                 'choices' => [
                     ['text' => 'Full payment of tuition fees', 'correct' => true],
                     ['text' => 'Attendance below 50%', 'correct' => false],
-                    ['text' => 'No profile photo on XYZMAYA', 'correct' => false],
+                    ['text' => 'No profile photo on XYZ LMS', 'correct' => false],
                     ['text' => 'No required documents submitted', 'correct' => false],
                 ],
             ],
             [
                 'type' => 'Yes or No',
-                'title' => 'Can students access the exam schedule via XYZMAYA Mobile?',
+                'title' => 'Can students access the exam schedule via XYZ LMS Mobile?',
                 'point' => 5,
                 'choices' => [
                     ['text' => 'Yes', 'correct' => true],
@@ -280,7 +280,7 @@ class ActivitySceneSeeder5 extends Seeder
                 'title' => 'Arrange the steps to project a non-PPT file onto the screen.',
                 'point' => 15,
                 'steps' => [
-                    ['text' => 'Click start link Zoom from XYZMAYA LMS', 'order' => 1],
+                    ['text' => 'Click start link Zoom from XYZ LMS LMS', 'order' => 1],
                     ['text' => 'Drag the file to the projector screen', 'order' => 2],
                     ['text' => 'Click "Share Screen" in Zoom', 'order' => 3],
                     ['text' => 'Select "Screen 2" and click Share', 'order' => 4],
@@ -320,7 +320,7 @@ class ActivitySceneSeeder5 extends Seeder
                 'title' => 'Arrange the steps to check attendance for an ongoing semester.',
                 'point' => 15,
                 'steps' => [
-                    ['text' => 'Log in to XYZMAYA', 'order' => 1],
+                    ['text' => 'Log in to XYZ LMS', 'order' => 1],
                     ['text' => 'Go to Academic Services', 'order' => 2],
                     ['text' => 'Select Attendance Information', 'order' => 3],
                     ['text' => 'Choose the current semester and subject', 'order' => 4],
@@ -340,7 +340,7 @@ class ActivitySceneSeeder5 extends Seeder
                 'title' => 'Which platform provides exam schedules at XYZ?',
                 'point' => 10,
                 'choices' => [
-                    ['text' => 'XYZMAYA Academic Services', 'correct' => true],
+                    ['text' => 'XYZ LMS Academic Services', 'correct' => true],
                     ['text' => 'Library Information Desk', 'correct' => false],
                     ['text' => 'XYZ Career Center', 'correct' => false],
                 ],
@@ -350,7 +350,7 @@ class ActivitySceneSeeder5 extends Seeder
                 'title' => 'Arrange the steps to request a make-up exam.',
                 'point' => 15,
                 'steps' => [
-                    ['text' => 'Log in to XYZMAYA', 'order' => 1],
+                    ['text' => 'Log in to XYZ LMS', 'order' => 1],
                     ['text' => 'Go to Student Services > E-Form', 'order' => 2],
                     ['text' => 'Select "Make Up Exam"', 'order' => 3],
                     ['text' => 'Submit the required evidence', 'order' => 4],

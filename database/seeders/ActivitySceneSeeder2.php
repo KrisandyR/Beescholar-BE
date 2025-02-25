@@ -415,7 +415,7 @@ class ActivitySceneSeeder2 extends Seeder
         ]);
 
         QuizChoice::create([
-            'choice_text' => 'Visit XYZMAYA and click "GET YOUR USERNAME".',
+            'choice_text' => 'Visit XYZ LMS and click "GET YOUR USERNAME".',
             'is_correct' => true,
             'question_id' => $question1->id,
             'created_by' => 'SceneDialogueSeeder',
@@ -450,7 +450,7 @@ class ActivitySceneSeeder2 extends Seeder
         ]);
 
         QuizChoice::create([
-            'choice_text' => 'In XYZMAYA under Schedule > View Academic Calendar.',
+            'choice_text' => 'In XYZ LMS under Schedule > View Academic Calendar.',
             'is_correct' => true,
             'question_id' => $question2->id,
             'created_by' => 'SceneDialogueSeeder',
@@ -520,7 +520,7 @@ class ActivitySceneSeeder2 extends Seeder
         ]);
 
         QuizChoice::create([
-            'choice_text' => 'In XYZMAYA under Academic Services > Attendance Information.',
+            'choice_text' => 'In XYZ LMS under Academic Services > Attendance Information.',
             'is_correct' => true,
             'question_id' => $question4->id,
             'created_by' => 'SceneDialogueSeeder',

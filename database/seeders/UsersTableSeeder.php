@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
             'gender' => 'M',
             'email' => 'krisandy.rivera@xyz.ac.id',
             'password' => bcrypt('a'),
-            'profile_picture' => 'https://avatar.iran.liara.run/public',
+            'profile_picture' => 'https://avatar.iran.liara.run/public/1',
             'created_by' => 'UsersTableSeeder',
             'updated_by' => null,
         ]);
@@ -38,7 +38,7 @@ class UsersTableSeeder extends Seeder
             'gender' => 'M',
             'email' => 'dummy.student01@xyz.ac.id',
             'password' => bcrypt('a'),
-            'profile_picture' => 'https://avatar.iran.liara.run/public',
+            'profile_picture' => 'https://avatar.iran.liara.run/public/2',
             'created_by' => 'UsersTableSeeder',
             'updated_by' => null,
         ]);
@@ -55,7 +55,7 @@ class UsersTableSeeder extends Seeder
             'gender' => 'M',
             'email' => '2502045363@example.com',
             'password' => bcrypt('a'),
-            'profile_picture' => 'https://avatar.iran.liara.run/public',
+            'profile_picture' => 'https://avatar.iran.liara.run/public/3',
             'created_by' => 'UsersTableSeeder',
             'updated_by' => null,
         ]);
@@ -71,7 +71,7 @@ class UsersTableSeeder extends Seeder
             'gender' => 'M',
             'email' => '2502045364@example.com',
             'password' => bcrypt('a'),
-            'profile_picture' => 'https://avatar.iran.liara.run/public',
+            'profile_picture' => 'https://avatar.iran.liara.run/public/4',
             'created_by' => 'UsersTableSeeder',
             'updated_by' => null,
         ]);
@@ -87,7 +87,7 @@ class UsersTableSeeder extends Seeder
             'gender' => 'M',
             'email' => '2502045365@example.com',
             'password' => bcrypt('a'),
-            'profile_picture' => 'https://avatar.iran.liara.run/public',
+            'profile_picture' => 'https://avatar.iran.liara.run/public/5',
             'created_by' => 'UsersTableSeeder',
             'updated_by' => null,
         ]);
@@ -103,7 +103,7 @@ class UsersTableSeeder extends Seeder
             'gender' => 'M',
             'email' => '2502045366@example.com',
             'password' => bcrypt('a'),
-            'profile_picture' => 'https://avatar.iran.liara.run/public',
+            'profile_picture' => 'https://avatar.iran.liara.run/public/6',
             'created_by' => 'UsersTableSeeder',
             'updated_by' => null,
         ]);
@@ -119,7 +119,7 @@ class UsersTableSeeder extends Seeder
             'gender' => 'M',
             'email' => '2502045367@example.com',
             'password' => bcrypt('a'),
-            'profile_picture' => 'https://avatar.iran.liara.run/public',
+            'profile_picture' => 'https://avatar.iran.liara.run/public/7',
             'created_by' => 'UsersTableSeeder',
             'updated_by' => null,
         ]);
@@ -135,7 +135,7 @@ class UsersTableSeeder extends Seeder
             'gender' => 'M',
             'email' => '2502045368@example.com',
             'password' => bcrypt('a'),
-            'profile_picture' => 'https://avatar.iran.liara.run/public',
+            'profile_picture' => 'https://avatar.iran.liara.run/public/8',
             'created_by' => 'UsersTableSeeder',
             'updated_by' => null,
         ]);
@@ -151,7 +151,7 @@ class UsersTableSeeder extends Seeder
             'gender' => 'M',
             'email' => '2502045369@example.com',
             'password' => bcrypt('a'),
-            'profile_picture' => 'https://avatar.iran.liara.run/public',
+            'profile_picture' => 'https://avatar.iran.liara.run/public/9',
             'created_by' => 'UsersTableSeeder',
             'updated_by' => null,
         ]);
@@ -167,7 +167,7 @@ class UsersTableSeeder extends Seeder
             'gender' => 'M',
             'email' => '2502045370@example.com',
             'password' => bcrypt('a'),
-            'profile_picture' => 'https://avatar.iran.liara.run/public',
+            'profile_picture' => 'https://avatar.iran.liara.run/public/10',
             'created_by' => 'UsersTableSeeder',
             'updated_by' => null,
         ]);
@@ -183,7 +183,7 @@ class UsersTableSeeder extends Seeder
             'gender' => 'M',
             'email' => '2502045371@example.com',
             'password' => bcrypt('a'),
-            'profile_picture' => 'https://avatar.iran.liara.run/public',
+            'profile_picture' => 'https://avatar.iran.liara.run/public/11',
             'created_by' => 'UsersTableSeeder',
             'updated_by' => null,
         ]);
@@ -199,7 +199,7 @@ class UsersTableSeeder extends Seeder
             'gender' => 'M',
             'email' => '2502045372@example.com',
             'password' => bcrypt('a'),
-            'profile_picture' => 'https://avatar.iran.liara.run/public',
+            'profile_picture' => 'https://avatar.iran.liara.run/public/12',
             'created_by' => 'UsersTableSeeder',
             'updated_by' => null,
         ]);
